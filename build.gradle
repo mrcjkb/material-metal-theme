@@ -70,7 +70,7 @@ publishing {
             customizePom(pom)
             groupId "com.github.mrcjkb"
             artifactId "${rootProject.name}"
-            version "${version_number}"
+            version "${version}"
 
             from components.java
 

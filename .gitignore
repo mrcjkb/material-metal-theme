@@ -3,6 +3,7 @@
 /gradle
 /gradlew.bat
 /gradlew
+/gradle.properties
 build
 secret.gpg
 pom.xml
