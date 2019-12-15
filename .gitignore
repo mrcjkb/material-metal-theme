@@ -1,0 +1,16 @@
+.gradle
+/.gradle
+/gradlew
+build
+secret.gpg
+pom.xml
+/build/
+.settings/
+.classpath
+.project
+/.dev/
+/target/
+/bin
+*/**/bin
+/.mvn
+!.mvn/wrapper/maven-wrapper.jar
