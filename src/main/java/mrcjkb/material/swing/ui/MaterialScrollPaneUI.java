@@ -7,6 +7,8 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ContainerAdapter;
 import java.awt.event.ContainerEvent;
+import java.awt.event.HierarchyEvent;
+import java.awt.event.HierarchyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.logging.Logger;
@@ -109,7 +111,14 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
 			public void componentRemoved(ContainerEvent aE) {
 				removeListeners(aE.getComponent());
 			}
-		});
+    	});
+    	scrollpane.getViewport().addHierarchyListener(new HierarchyListener() {
+    		@Override
+    		public void hierarchyChanged(HierarchyEvent aE) {
+    			removeListeners(scrollpane.getViewport());
+    			addListeners(scrollpane.getViewport());
+    		}
+    	});
     	scrollpane.getHorizontalScrollBar().addMouseListener(scrollBarMouseAdapter);
 		scrollpane.getHorizontalScrollBar().addMouseListener(mouseExitedAdapter);
 		scrollpane.getVerticalScrollBar().addMouseListener(scrollBarMouseAdapter);
@@ -139,6 +148,9 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
 	 * @param aComponent
 	 */
 	private void addListeners(Component aComponent) {
+		if (null == aComponent) {
+			return;
+		}
 		if (aComponent instanceof Container) {
 			for (Component child : ((Container) aComponent).getComponents()) {
 				addListeners(child);
@@ -153,6 +165,9 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
 	 * @param aComponent
 	 */
 	private void removeListeners(Component aComponent) {
+		if (null == aComponent) {
+			return;
+		}
 		try {
 			if (aComponent instanceof Container) {
 				for (Component child : ((Container) aComponent).getComponents()) {
