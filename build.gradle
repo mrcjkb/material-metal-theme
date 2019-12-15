@@ -144,7 +144,7 @@ def customizePom(pom) {
             licenses {
                 license {
                     name 'MIT License'
-                    url ''
+                    url 'https://github.com/MrcJkb/material-metal-theme/blob/master/LICENSE.md'
                     distribution 'repo'
                 }
             }
