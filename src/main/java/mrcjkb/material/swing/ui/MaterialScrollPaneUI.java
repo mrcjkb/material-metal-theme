@@ -5,8 +5,8 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.event.HierarchyEvent;
-import java.awt.event.HierarchyListener;
+import java.awt.event.ContainerAdapter;
+import java.awt.event.ContainerEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.logging.Logger;
@@ -99,32 +99,21 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
 				}
 			}
 		};
-    	scrollpane.getViewport().addHierarchyListener(new HierarchyListener() {
-			
-    		private Component mLastChild;
-    		
+    	scrollpane.getViewport().addContainerListener(new ContainerAdapter() {
 			@Override
-			public void hierarchyChanged(HierarchyEvent aE) {
-				Component child = scrollpane.getViewport().getView();
-				if (null == child || null == scrollpane.getVerticalScrollBar() || null == scrollpane.getHorizontalScrollBar()) {
-					return;
-				}
-				boolean isComponentReplacement = null != mLastChild && !mLastChild.equals(child);
-				if (isComponentReplacement) {
-					removeListeners(scrollpane.getViewport());
-				}
-				if (null != child) {
-					addListeners(scrollpane.getViewport());
-					if (!isComponentReplacement) {
-						scrollpane.getHorizontalScrollBar().addMouseListener(scrollBarMouseAdapter);
-						scrollpane.getHorizontalScrollBar().addMouseListener(mouseExitedAdapter);
-						scrollpane.getVerticalScrollBar().addMouseListener(scrollBarMouseAdapter);
-						scrollpane.getVerticalScrollBar().addMouseListener(mouseExitedAdapter);
-					}
-				}
-				mLastChild = child;
+			public void componentAdded(ContainerEvent aE) {
+				addListeners(aE.getComponent());
+			}
+			
+			@Override
+			public void componentRemoved(ContainerEvent aE) {
+				removeListeners(aE.getComponent());
 			}
 		});
+    	scrollpane.getHorizontalScrollBar().addMouseListener(scrollBarMouseAdapter);
+		scrollpane.getHorizontalScrollBar().addMouseListener(mouseExitedAdapter);
+		scrollpane.getVerticalScrollBar().addMouseListener(scrollBarMouseAdapter);
+		scrollpane.getVerticalScrollBar().addMouseListener(mouseExitedAdapter);
 	}
 
 	private void revalidateScrollBars() {
