@@ -132,7 +132,7 @@ def customizePom(pom) {
 
             description 'Material theme for Swing Metal LAF.'
             name "${rootProject.name}"
-            url ''
+            url 'https://github.com/MrcJkb/material-metal-theme/'
             organization {
                 name 'Marc Jakobi'
                 url 'https://www.github.com/MrcJkb'
