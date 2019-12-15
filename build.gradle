@@ -135,11 +135,11 @@ def customizePom(pom) {
             url ''
             organization {
                 name 'Marc Jakobi'
-                url 'https://www.github.com/mrcjkb'
+                url 'https://www.github.com/MrcJkb'
             }
             issueManagement {
                 system 'GitHub'
-                url ''
+                url 'https://github.com/MrcJkb/material-metal-theme/issues'
             }
             licenses {
                 license {
@@ -149,9 +149,9 @@ def customizePom(pom) {
                 }
             }
             scm {
-                url 'https://'
-                connection 'scm:git:git://github.com//...'
-                developerConnection 'scm:git:ssh://git@github.com...'
+                url 'https://github.com/MrcJkb/material-metal-theme'
+                connection 'scm:git:git://github.com/MrcJkb/material-metal-theme'
+                developerConnection 'scm:git:ssh://git@github.com/MrcJkb/material-metal-theme.git'
             }
             developers {
                 developer {
