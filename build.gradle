@@ -1,0 +1,180 @@
+buildscript {
+    version = "0.0.1"
+    description = "Material design-inspired theme for Swing's metal look and feel."
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+}
+
+task apiJavadoc(type: Javadoc) {
+    title = "Material Metal Theme"
+    description "Generates Javadoc for ${rootProject.name}."
+    source = sourceSets.main.allJava
+    classpath = configurations.compile
+    options.links("https://docs.oracle.com/en/java/javase/11/docs/api/");
+}
+
+task sourceJar(type: Jar) {
+    classifier "sources"
+    from sourceSets.main.allJava
+}
+
+task javadocJar(type: Jar) {
+    dependsOn apiJavadoc
+    classifier "javadoc"
+    from javadoc.destinationDir
+}
+
+jar {
+  manifest {
+    attributes(
+      'Library'        : "${rootProject.name}",
+      'Version'        : "${version}",
+      'Website'        : "www.github.com/mrcjkb",
+      'Built-By'       : System.properties['user.name'],
+      'Build-Timestamp': new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(new Date()),
+      'Created-By'     : "Gradle ${gradle.gradleVersion}",
+      'Build-Jdk'      : "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})",
+      'Build-OS'       : "${System.properties['os.name']} ${System.properties['os.arch']} ${System.properties['os.version']}"
+    )
+  }
+}
+
+artifacts {
+    archives jar
+    archives sourceJar
+    archives javadocJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            customizePom(pom)
+            groupId "com.github.mrcjkb"
+            artifactId "${rootProject.name}"
+            version "${version_number}"
+
+            from components.java
+
+            // create the sign pom artifact
+            pom.withXml {
+                def pomFile = file("${project.buildDir}/pom.xml")
+                writeTo(pomFile)
+                def pomAscFile = signing.sign(pomFile).signatureFiles[0]
+                artifact(pomAscFile) {
+                    classifier = null
+                    extension = 'pom.asc'
+                }
+            }
+
+            artifact(sourceJar) {
+                classifier = 'sources'
+            }
+            artifact(javadocJar) {
+                classifier = 'javadoc'
+            }
+
+            // create the signed artifacts
+            project.tasks.signArchives.signatureFiles.each {
+                artifact(it) {
+                    def matcher = it.file =~ /-(sources|javadoc)\.jar\.asc$/
+                    if (matcher.find()) {
+                        classifier = matcher.group(1)
+                    } else {
+                        classifier = null
+                    }
+                    extension = 'jar.asc'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            credentials {
+                username "${sonatypeUsername}"
+                password "${sonatypePassword}"
+            }
+        }
+    }
+}
+
+def customizePom(pom) {
+    pom.withXml {
+        def root = asNode()
+
+        // eliminate test-scoped dependencies (no need in maven central POMs)
+        root.dependencies.removeAll { dep ->
+            dep.scope == "test"
+        }
+
+        // add all items necessary for maven central publication
+        root.children().last() + {
+            resolveStrategy = Closure.DELEGATE_FIRST
+
+            description 'Material theme for Swing Metal LAF.'
+            name "${rootProject.name}"
+            url ''
+            organization {
+                name 'Marc Jakobi'
+                url 'https://www.github.com/mrcjkb'
+            }
+            issueManagement {
+                system 'GitHub'
+                url ''
+            }
+            licenses {
+                license {
+                    name 'MIT License'
+                    url ''
+                    distribution 'repo'
+                }
+            }
+            scm {
+                url 'https://'
+                connection 'scm:git:git://github.com//...'
+                developerConnection 'scm:git:ssh://git@github.com...'
+            }
+            developers {
+                developer {
+                    name 'Marc Jakobi'
+                }
+            }
+        }
+    }
+}
+
+model {
+    tasks.generatePomFileForMavenJavaPublication {
+        destination = file("${project.buildDir}/pom.xml")
+    }
+    tasks.publishMavenJavaPublicationToMavenLocal {
+        dependsOn project.tasks.signArchives
+    }
+    tasks.publishMavenJavaPublicationToMavenRepository {
+        dependsOn project.tasks.signArchives
+    }
+}
+
+sourceCompatibility = 11
+targetCompatibility = 11
+compileJava.options.encoding = "iso-8859-1"
+compileTestJava.options.encoding = "iso-8859-1"
