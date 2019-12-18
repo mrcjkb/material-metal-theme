@@ -131,7 +131,7 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
 	}
 	
 	private static boolean isPointWithinComponent(Component c, Point p) {
-	    if (!c.isVisible()) {
+	    if (null == c || !c.isVisible()) {
 	    	return false;
 	    }
 	    try {
