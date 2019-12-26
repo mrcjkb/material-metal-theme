@@ -21,7 +21,6 @@ public class MaterialSliderUI extends BasicSliderUI {
 	public MaterialSliderUI(JSlider slider) {
 		super(slider);
 		this.slider = slider;
-		slider.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 
 	@Override

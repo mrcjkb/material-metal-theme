@@ -191,11 +191,9 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 			Point point = e.getPoint();
 			for (Rectangle r : rectangles) {
 				if (r.contains(point)) {
-					mouseGenerate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 					return;
 				}
 			}
-			mouseGenerate.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
 	}
 }

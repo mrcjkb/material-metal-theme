@@ -79,7 +79,6 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
     
     public void installUI(JComponent c) {
     	super.installUI(c);
-    	c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     	originalThumbColor = thumbColor;
     	scrollbar.addMouseListener(new MouseAdapter() {
     		

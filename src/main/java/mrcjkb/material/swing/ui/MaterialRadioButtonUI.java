@@ -1,6 +1,5 @@
 package mrcjkb.material.swing.ui;
 
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -30,6 +29,15 @@ public class MaterialRadioButtonUI extends BasicRadioButtonUI {
 		radioButton.setFont(UIManager.getFont ("RadioButton.font"));
 		radioButton.setBackground(UIManager.getColor("RadioButton.background"));
 		radioButton.setForeground(UIManager.getColor("RadioButton.foreground"));
+		setDefaultIcons(radioButton);
+		radioButton.addMouseListener(MaterialUIMovement.getMovement(radioButton, UIManager.getColor("MaterialSwing.accent2Color")));
+	}
+
+	/**
+	 * Sets the default Material-Metal-Theme icons.
+	 * @param radioButton the radio button to apply the icons to.
+	 */
+	public static void setDefaultIcons(JRadioButton radioButton) {
 		radioButton.setIcon(RadioButtonUncheckedIcon.builder()
 				.withBackgroundColor(radioButton.getBackground())
 				.withForegroundColor(radioButton.getForeground())
@@ -48,8 +56,6 @@ public class MaterialRadioButtonUI extends BasicRadioButtonUI {
 				.withOuterCircleColor(UIManager.getColor("MaterialSwing.uiDisabledColor"))
 				.withInnerCircleColor(UIManager.getColor("MaterialSwing.uiDisabledColor"))
 				.build());
-		c.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		radioButton.addMouseListener(MaterialUIMovement.getMovement(radioButton, UIManager.getColor("MaterialSwing.hoverColor")));
 	}
 
 	@Override

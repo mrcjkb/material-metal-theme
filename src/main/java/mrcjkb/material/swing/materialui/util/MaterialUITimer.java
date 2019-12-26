@@ -20,6 +20,8 @@ import mrcjkb.material.swing.icon.checkbox.CheckboxCheckedIcon;
 import mrcjkb.material.swing.icon.checkbox.CheckboxUncheckedIcon;
 import mrcjkb.material.swing.icon.radiobutton.RadioButtonCheckedIcon;
 import mrcjkb.material.swing.icon.radiobutton.RadioButtonUncheckedIcon;
+import mrcjkb.material.swing.ui.MaterialCheckBoxUI;
+import mrcjkb.material.swing.ui.MaterialRadioButtonUI;
 
 public class MaterialUITimer implements MouseListener, ActionListener, MouseMotionListener {
 
@@ -38,7 +40,6 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
         if(component.getCursor().getType() == Cursor.WAIT_CURSOR){
             return;
         }
-        component.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         if(component instanceof JButton){
             JButton button = (JButton) component;
             if (button.isDefaultButton()){
@@ -72,7 +73,17 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
         this.component = component;
         //this.component.addMouseListener(this);
         timer = new Timer(interval, this);
-        component.setBackground(from);
+        initComponent(component);
+    }
+
+    private void initComponent(JComponent component) {
+        if (component instanceof JCheckBox) {
+            MaterialCheckBoxUI.setDefaultIcons((JCheckBox) component);
+        } else if (component instanceof JRadioButton) {
+            MaterialRadioButtonUI.setDefaultIcons((JRadioButton) component);
+        } else {
+            component.setBackground(from);
+        }
     }
 
     private Color nextColor() {
@@ -150,18 +161,18 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
     public void actionPerformed(ActionEvent ae) {
         if (forward) {
         	if (component instanceof JCheckBox) {
-        		setCheckboxIconBackground((JCheckBox) component, nextColor());
+        		setCheckboxIconHover((JCheckBox) component, nextColor());
         	} else if (component instanceof JRadioButton) {
-        		setRadioButtonIconBackground((JRadioButton) component, nextColor());
+        		setRadioButtonIconHover((JRadioButton) component, nextColor());
         	} else {
         		component.setBackground(nextColor());
         	}
             ++alpha;
         } else {
         	if (component instanceof JCheckBox) {
-        		setCheckboxIconBackground((JCheckBox) component, previousColor());
+        		setCheckboxIconHover((JCheckBox) component, previousColor());
         	} else if (component instanceof JRadioButton) {
-        		setRadioButtonIconBackground((JRadioButton) component, previousColor());
+        		setRadioButtonIconHover((JRadioButton) component, previousColor());
         	} else {
         		component.setBackground(previousColor());
         	}
@@ -171,6 +182,10 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
         if (alpha == steps + 1 || alpha == -1) {
             if(timer.isRunning()){
                 timer.stop();
+                if (alpha == -1) {
+                    // reset
+                    initComponent(component);
+                }
             }
         }
     }
@@ -180,15 +195,15 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
      * @param checkBox
      * @param color
      */
-    private static void setCheckboxIconBackground(JCheckBox checkBox, Color color) {
+    private static void setCheckboxIconHover(JCheckBox checkBox, Color color) {
     	checkBox.setIcon(CheckboxUncheckedIcon.builder()
-				.withBackgroundColor(color)
-				.withBoxColor(checkBox.getForeground())
+				.withBoxColor(color)
+				.withBackgroundColor(checkBox.getBackground())
 				.build());
 		checkBox.setSelectedIcon(CheckboxCheckedIcon.builder()
-				.withBackgroundColor(color)
-				.withBoxColor(checkBox.getForeground())
-				.withCheckColor(UIManager.getColor("MaterialSwing.accent2Color"))
+				.withBackgroundColor(checkBox.getBackground())
+				.withBoxColor(color)
+				.withCheckColor(color)
 				.build());
     }
     
@@ -197,15 +212,15 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
      * @param radioButton
      * @param color
      */
-    private static void setRadioButtonIconBackground(JRadioButton radioButton, Color color) {
+    private static void setRadioButtonIconHover(JRadioButton radioButton, Color color) {
     	radioButton.setIcon(RadioButtonUncheckedIcon.builder()
-				.withBackgroundColor(color)
-				.withForegroundColor(radioButton.getForeground())
+				.withBackgroundColor(radioButton.getBackground())
+				.withForegroundColor(color)
 				.build());
 		radioButton.setSelectedIcon(RadioButtonCheckedIcon.builder()
-				.withBackgroundColor(color)
-				.withOuterCircleColor(radioButton.getForeground())
-				.withInnerCircleColor(UIManager.getColor("MaterialSwing.accent2Color"))
+				.withBackgroundColor(radioButton.getBackground())
+				.withOuterCircleColor(color)
+				.withInnerCircleColor(color)
 				.build());
     }
 

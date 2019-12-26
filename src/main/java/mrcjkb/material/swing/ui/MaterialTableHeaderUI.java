@@ -24,14 +24,14 @@ public class MaterialTableHeaderUI extends BasicTableHeaderUI {
 		super.installUI(c);
 
 		JTableHeader header = (JTableHeader) c;
-		header.setDefaultRenderer (new MaterialTableHeaderCellRenderer());
+		header.setDefaultRenderer(new MaterialTableHeaderCellRenderer());
 	}
 
 	@Override
 	public void uninstallUI(JComponent c) {
 
 		JTableHeader header = (JTableHeader) c;
-		header.setDefaultRenderer (null);
+		header.setDefaultRenderer(null);
 		header.setBackground(null);
 		header.setForeground(null);
 		header.setFont(null);

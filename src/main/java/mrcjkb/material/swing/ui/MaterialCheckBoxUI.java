@@ -1,6 +1,5 @@
 package mrcjkb.material.swing.ui;
 
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -25,7 +24,6 @@ public class MaterialCheckBoxUI extends BasicCheckBoxUI {
 		return new MaterialCheckBoxUI();
 	}
 
-
 	@Override
 	public void installUI(JComponent c) {
 		super.installUI(c);
@@ -34,7 +32,15 @@ public class MaterialCheckBoxUI extends BasicCheckBoxUI {
 		checkBox.setFont(UIManager.getFont("CheckBox.font"));
 		checkBox.setBackground(UIManager.getColor("CheckBox.background"));
 		checkBox.setForeground(UIManager.getColor("CheckBox.foreground"));
-		checkBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		setDefaultIcons(checkBox);
+		checkBox.addMouseListener(MaterialUIMovement.getMovement(checkBox, UIManager.getColor("MaterialSwing.accent2Color")));
+	}
+
+	/**
+	 * Sets the default Material-Metal-Theme icons.
+	 * @param checkBox the checkbox to apply the icons to.
+	 */
+	public static void setDefaultIcons(JCheckBox checkBox) {
 		checkBox.setIcon(CheckboxUncheckedIcon.builder()
 				.withBackgroundColor(checkBox.getBackground())
 				.withBoxColor(checkBox.getForeground())
@@ -45,14 +51,13 @@ public class MaterialCheckBoxUI extends BasicCheckBoxUI {
 				.withCheckColor(UIManager.getColor("MaterialSwing.accent2Color"))
 				.build());
 		checkBox.setDisabledIcon(CheckboxUncheckDisableIcon.builder()
-				.withBackgroundColor(c.getBackground())
+				.withBackgroundColor(checkBox.getBackground())
 				.withForegroundColor(UIManager.getColor("MaterialSwing.uiDisabledColor"))
 				.build());
 		checkBox.setDisabledSelectedIcon(CheckboxDisableIcon.builder()
-				.withBackgroundColor(c.getBackground())
+				.withBackgroundColor(checkBox.getBackground())
 				.withForegroundColor(UIManager.getColor("MaterialSwing.uiDisabledColor"))
 				.build());
-		checkBox.addMouseListener(MaterialUIMovement.getMovement(checkBox, UIManager.getColor("MaterialSwing.hoverColor")));
 	}
 
 	@Override

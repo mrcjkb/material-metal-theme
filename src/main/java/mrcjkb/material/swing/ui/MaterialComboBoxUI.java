@@ -49,7 +49,6 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 		comboBox.setForeground(UIManager.getColor("ComboBox.foreground"));
 		comboBox.setBorder(UIManager.getBorder("ComboBox.border"));
 		comboBox.setLightWeightPopupEnabled(true);
-		comboBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		comboBox.setFocusable(true);
 
 		this.arc = UIManager.getInt("ComboBox.arc");

@@ -61,7 +61,6 @@ public class MaterialButtonUI extends BasicButtonUI{
 		defaultBackground = UIManager.getColor("Button[Default].background");
 		defaultForeground = UIManager.getColor("Button[Default].foreground");
 		button.setFocusable(false);
-		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		button.addHierarchyListener(new HierarchyListener() {
 			
