@@ -6,18 +6,17 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 import mrcjkb.material.swing.materialui.util.MaterialDrawingUtils;
+import mrcjkb.material.swing.materialui.util.MaterialUIMovement;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseMotionListener;
 
 public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
 	private static final int LINE_HEIGHT = 5;
-			
-	public static ComponentUI createUI(JComponent c) {
-		return new MaterialTabbedPaneUI();
-	}
 
 	protected JTabbedPane component;
 	protected ColorUIResource selectedForeground;
@@ -28,6 +27,10 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 	protected int positionYLine;
 	protected int positionXLine;
 	protected int widthLine;
+
+	public static ComponentUI createUI(JComponent c) {
+		return new MaterialTabbedPaneUI();
+	}
 
 	@Override
 	public void installUI(JComponent c) {
@@ -75,22 +78,22 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 	protected void paintTabBackground(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
 		positionYLine = h - 8;
 		Graphics2D g2D = (Graphics2D) g;
-		int xp[];
-		int yp[];
+		int[] xp;
+		int[] yp;
 		Polygon shape = null;
 		Rectangle shapeRect = null;
-		if(tabPlacement == TOP){
+		if (tabPlacement == TOP) {
 			xp = new int[]{x, x, x, x + w, x + w, x + w, x + w, x};
 			yp = new int[]{(y + positionYLine + LINE_HEIGHT), y + positionYLine, y + positionYLine, y + positionYLine, y + positionYLine, y + positionYLine, y + positionYLine + LINE_HEIGHT, y + positionYLine + LINE_HEIGHT};
 			shape = new Polygon(xp, yp, xp.length);
-		}else if(tabPlacement == BOTTOM){
+		} else if (tabPlacement == BOTTOM) {
 			y += 20;
 			xp = new int[]{x, x, x, x + w, x + w, x + w, x + w, x};
 			yp = new int[]{(y + LINE_HEIGHT), y, y, y, y, y, y + LINE_HEIGHT, y + LINE_HEIGHT};
 			shape = new Polygon(xp, yp, xp.length);
-		}else if(tabPlacement == LEFT){
+		} else if (tabPlacement == LEFT) {
 			shapeRect = new Rectangle(x + LINE_HEIGHT - 2, y + (LINE_HEIGHT), LINE_HEIGHT, w / (tabPane.getTabCount()));
-		}else{
+		} else {
 			shapeRect = new Rectangle(x + w - LINE_HEIGHT, y + (LINE_HEIGHT), LINE_HEIGHT, w / (tabPane.getTabCount()));
 		}
 
@@ -98,9 +101,9 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 			g2D.setColor(selectedAreaContentBackground);
 			g2D.setPaint(selectedAreaContentBackground);
 			tabPane.setForegroundAt(tabIndex, selectedForeground);
-			if(shape != null){
+			if (shape != null) {
 				g2D.fill(shape);
-			}else if (shapeRect != null){
+			} else if (shapeRect != null) {
 				g2D.fill(shapeRect);
 			}
 		} else {
@@ -121,9 +124,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 	protected void paintTab(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect) {
 		// for some reason tabs aren't painted properly by paint()
 		super.paintTab(MaterialDrawingUtils.getAliasedGraphics(g), tabPlacement, rects, tabIndex, iconRect, textRect);
-		if (UIManager.getBoolean("TabbedPane[MouseHover].enable")) {
-			component.addMouseMotionListener(new MouseHoverTab(rects));
-		}
 	}
 
 	@Override
@@ -162,36 +162,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 			if (tabPlacement == TOP || tabPlacement == BOTTOM) {
 				for (int i = 0; i < rects.length; i++) {
 					rects[i].x += i * spacer + indent;
-				}
-			}
-		}
-	}
-
-	protected class MouseHoverTab implements MouseMotionListener {
-
-		private Rectangle[] rectangles;
-
-		public MouseHoverTab(Rectangle[] rectangles) {
-			this.rectangles = rectangles;
-		}
-
-		@Override
-		public void mouseDragged(MouseEvent e) {
-		}
-
-		@Override
-		public void mouseMoved(MouseEvent e) {
-			JComponent mouseGenerate = (JComponent) e.getSource();
-			if (!mouseGenerate.isEnabled()) {
-				return;
-			}
-			if (mouseGenerate.getCursor().equals(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR))) {
-				return;
-			}
-			Point point = e.getPoint();
-			for (Rectangle r : rectangles) {
-				if (r.contains(point)) {
-					return;
 				}
 			}
 		}
