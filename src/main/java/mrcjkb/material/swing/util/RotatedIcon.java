@@ -28,8 +28,8 @@ public class RotatedIcon implements Icon
 		DOWN,
 		UP,
 		UPSIDE_DOWN,
-		ABOUT_CENTER;
-	}
+		ABOUT_CENTER
+    }
 
 	private Icon icon;
 
@@ -145,7 +145,7 @@ public class RotatedIcon implements Icon
 	 *  Set the Icon as circular or rectangular. Only used for Rotate.ABOUT_CENTER.
 	 *  When true, the icon width/height will not change as the Icon is rotated.
 	 *
-	 *  @param true for a circular Icon, false otherwise
+	 *  @param circularIcon {@code true} for a circular Icon, false otherwise
 	 */
 	public void setCircularIcon(boolean circularIcon)
 	{

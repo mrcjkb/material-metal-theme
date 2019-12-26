@@ -25,7 +25,7 @@ task apiJavadoc(type: Javadoc) {
     description "Generates Javadoc for ${rootProject.name}."
     source = sourceSets.main.allJava
     classpath = configurations.compile
-    options.links("https://docs.oracle.com/en/java/javase/11/docs/api/");
+    options.links("https://docs.oracle.com/en/java/javase/11/docs/api/")
 }
 
 task sourceJar(type: Jar) {

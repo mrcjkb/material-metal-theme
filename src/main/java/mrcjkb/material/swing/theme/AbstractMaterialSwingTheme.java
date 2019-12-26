@@ -64,10 +64,12 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 	@Override
 	protected ColorUIResource getSecondary3() { return secondary3; }
 	
-	protected ColorUIResource getAccent1() { return accent1; };
-	protected ColorUIResource getAccent2() { return accent2; };
-	protected ColorUIResource getHoverColor() { return hoverColor; };
-	
+	protected ColorUIResource getAccent1() { return accent1; }
+
+	protected ColorUIResource getAccent2() { return accent2; }
+
+	protected ColorUIResource getHoverColor() { return hoverColor; }
+
 	protected void applyUIManagerConfig() {
 		
 		UIManager.put("ButtonUI", MaterialButtonUI.class.getName());
