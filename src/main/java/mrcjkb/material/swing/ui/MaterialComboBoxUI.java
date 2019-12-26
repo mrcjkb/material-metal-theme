@@ -143,7 +143,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 		}
 	}
 	
-	public class MaterialComboBoxRenderer extends BasicComboBoxRenderer {
+	public static class MaterialComboBoxRenderer extends BasicComboBoxRenderer {
 
 		private static final long serialVersionUID = 5430108421010322387L;
 
@@ -165,7 +165,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 		}
 	}
 	
-	public class MaterialComboBoxEditor extends BasicComboBoxEditor {
+	public static class MaterialComboBoxEditor extends BasicComboBoxEditor {
 
 	    @Override
 	    public Component getEditorComponent() {

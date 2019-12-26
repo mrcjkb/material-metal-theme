@@ -12,21 +12,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.metal.DefaultMetalTheme;
 
-import mrcjkb.material.swing.ui.MaterialButtonUI;
-import mrcjkb.material.swing.ui.MaterialCheckBoxMenuItemUI;
-import mrcjkb.material.swing.ui.MaterialCheckBoxUI;
-import mrcjkb.material.swing.ui.MaterialComboBoxUI;
-import mrcjkb.material.swing.ui.MaterialProgressBarUI;
-import mrcjkb.material.swing.ui.MaterialRadioButtonMenuItemUI;
-import mrcjkb.material.swing.ui.MaterialRadioButtonUI;
-import mrcjkb.material.swing.ui.MaterialScrollBarUI;
-import mrcjkb.material.swing.ui.MaterialScrollPaneUI;
-import mrcjkb.material.swing.ui.MaterialSliderUI;
-import mrcjkb.material.swing.ui.MaterialSpinnerUI;
-import mrcjkb.material.swing.ui.MaterialTabbedPaneUI;
-import mrcjkb.material.swing.ui.MaterialTableHeaderUI;
-import mrcjkb.material.swing.ui.MaterialTableUI;
-import mrcjkb.material.swing.ui.MaterialToggleButtonUI;
+import mrcjkb.material.swing.ui.*;
 
 /**
  * Abstract class for the material Metal Theme
@@ -149,19 +135,21 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 		UIManager.put("Separator.background", new ColorUIResource(new Color(0, 0, 0, 0)));
 		UIManager.put("Menu.selectionBackground", new ColorUIResource(getAccent1()));
 		UIManager.put("Menu.border", BorderFactory.createLineBorder(new ColorUIResource(new Color(0, 0, 0, 0)), LINE_BORDER_WIDTH));
-		UIManager.put("MenuItem.border", BorderFactory.createLineBorder(new ColorUIResource(new Color(0, 0, 0, 0)), LINE_BORDER_WIDTH));
-		UIManager.put("MenuItem.height", UIManager.getInt("MenuItem.height") + 4);
+		border = BorderFactory.createLineBorder(new ColorUIResource(new Color(0, 0, 0, 0)), LINE_BORDER_WIDTH);
+		margin = new EmptyBorder(2, 2, 2, 2);
+		Border menuItemBorder = new CompoundBorder(border, margin);
+		UIManager.put("MenuItem.border", menuItemBorder);
 		UIManager.put("MenuItem.selectionBackground", new ColorUIResource(isLightTheme() ? getPrimary1().brighter() : getAccent1()));
 		UIManager.put("MenuItem.foreground", getBlack());
 		UIManager.put("MenuItem.acceleratorSelectionForeground", new ColorUIResource(Color.WHITE));
 		UIManager.put("CheckBoxMenuItem.selectionBackground", new ColorUIResource(isLightTheme() ? getPrimary1().brighter() : getAccent1()));
 		UIManager.put("CheckBoxMenuItem.foreground", getBlack());
 		UIManager.put("CheckBoxMenuItem.acceleratorSelectionForeground", new ColorUIResource(Color.WHITE));
-		UIManager.put("CheckBoxMenuItem.border", BorderFactory.createLineBorder(new ColorUIResource(new Color(0, 0, 0, 0)), LINE_BORDER_WIDTH));
+		UIManager.put("CheckBoxMenuItem.border", menuItemBorder);
 		UIManager.put("RadioButtonMenuItem.selectionBackground", new ColorUIResource(isLightTheme() ? getPrimary1().brighter() : getAccent1()));
 		UIManager.put("RadioButtonMenuItem.foreground", getBlack());
 		UIManager.put("RadioButtonMenuItem.acceleratorSelectionForeground", new ColorUIResource(Color.WHITE));
-		UIManager.put("RadioButtonMenuItem.border", BorderFactory.createLineBorder(new ColorUIResource(new Color(0, 0, 0, 0)), LINE_BORDER_WIDTH));
+		UIManager.put("RadioButtonMenuItem.border", menuItemBorder);
 		
 		UIManager.put("List.selectionBackground", new ColorUIResource(getAccent1()));
 		UIManager.put("List.focusCellHighlightBorder", BorderFactory.createEmptyBorder());
