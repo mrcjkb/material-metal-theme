@@ -17,3 +17,7 @@ pom.xml
 */**/bin
 /.mvn
 !.mvn/wrapper/maven-wrapper.jar
+/gradle
+/gradlew
+/gradlew.bat
+/.idea
