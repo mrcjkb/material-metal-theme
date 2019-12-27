@@ -71,10 +71,15 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 		UIManager.put("ToggleButtonUI", MaterialToggleButtonUI.class.getName());
 		UIManager.put("ToggleButton.background", isLightTheme() ? Color.LIGHT_GRAY : new Color(getSecondary3().getRed(), getSecondary3().getBlue(), getSecondary3().getGreen()));
 		UIManager.put("ToggleButton.highlight", Color.LIGHT_GRAY);
-		UIManager.put("Button.disabledText", isLightTheme() ? Color.GRAY : Color.LIGHT_GRAY);
 		UIManager.put("ToggleButton.border", new CompoundBorder(border, margin));
 		UIManager.put("ToggleButton.disabledText", Color.LIGHT_GRAY);
 
+		UIManager.put("MaterialSwing.primary1Color", getPrimary1());
+		UIManager.put("MaterialSwing.primary2Color", getPrimary2());
+		UIManager.put("MaterialSwing.primary3Color", getPrimary3());
+		UIManager.put("MaterialSwing.secondary1Color", getSecondary1());
+		UIManager.put("MaterialSwing.secondary2Color", getSecondary2());
+		UIManager.put("MaterialSwing.secondary3Color", getSecondary3());
 		UIManager.put("MaterialSwing.accent1Color", getAccent1());
 		UIManager.put("MaterialSwing.accent2Color", getAccent2());
 		UIManager.put("MaterialSwing.hoverColor", getHoverColor());
@@ -205,6 +210,8 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 		UIManager.put("MaterialSwing.autohideScrollBars", autohideScrollBars);
 		
 		UIManager.put("SpinnerUI", MaterialSpinnerUI.class.getName());
+		UIManager.put("TreeUI", MaterialTreeUI.class.getName());
+		UIManager.put("Tree.selectionForeground", getBlack());
 	}
 	
 	protected void setInactiveColors(ColorUIResource inactiveColor) {

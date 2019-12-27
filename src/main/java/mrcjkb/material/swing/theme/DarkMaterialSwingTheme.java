@@ -112,13 +112,10 @@ public class DarkMaterialSwingTheme extends AbstractMaterialSwingTheme {
 		UIManager.put("ToolBar.background", getPrimary2());
 		UIManager.put("SplitPane.background", getPrimary2());
 		UIManager.put("MenuItem.background", getPrimary2());
-		UIManager.put("MenuItem.border", BorderFactory.createEmptyBorder());
 		UIManager.put("MenuItem.selectionForeground", getBlack());
 		UIManager.put("CheckBoxMenuItem.background", getPrimary2());
-		UIManager.put("CheckBoxMenuItem.border", BorderFactory.createEmptyBorder());
 		UIManager.put("CheckBoxMenuItem.selectionForeground", getBlack());
 		UIManager.put("RadioButtonMenuItem.background", getPrimary2());
-		UIManager.put("RadioButtonMenuItem.border", BorderFactory.createEmptyBorder());
 		UIManager.put("RadioButtonMenuItem.selectionForeground", getBlack());
 		UIManager.put("Menu.background", getPrimary2());
 		UIManager.put("Menu.foreground", PANEL_FOREGROUND);
@@ -136,6 +133,9 @@ public class DarkMaterialSwingTheme extends AbstractMaterialSwingTheme {
 		UIManager.put("Tree.rendererBackgroundNonSelectionColor", getPrimary2());
 		UIManager.put("Tree.textBackground", getSecondary3());
 		UIManager.put("Tree.textForeground", PANEL_FOREGROUND);
+		UIManager.put("Tree.selectionHighlight", getAccent1());
+		UIManager.put("Tree.selectionBackground", Color.LIGHT_GRAY);
+		UIManager.put("Tree.selectionBackgroundAlpha", 50);
 		UIManager.put("CheckBox.background", getPrimary2());
 		UIManager.put("CheckBox.foreground", PANEL_FOREGROUND);
 		UIManager.put("RadioButton.background", getPrimary2());

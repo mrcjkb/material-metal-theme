@@ -74,6 +74,9 @@ public class LightMaterialSwingTheme extends AbstractMaterialSwingTheme {
 		UIManager.put("RadioButtonMenuItem.acceleratorForeground", getPrimary1());
 		UIManager.put("ToggleButton.select", getPrimary1());
 		UIManager.put("MaterialSwing.scrollbarPressedColor", getPrimary1());
+		UIManager.put("Tree.selectionHighlight", Color.LIGHT_GRAY );
+		UIManager.put("Tree.selectionBackground", getAccent1());
+		UIManager.put("Tree.selectionBackgroundAlpha", 255);
 		setInactiveColors(INACTIVE_COLOR);
 	}
 
