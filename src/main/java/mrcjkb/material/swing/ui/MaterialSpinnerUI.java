@@ -54,7 +54,6 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
 				.withHeight(SPINNER_ARROW_ICON_SIZE)
 				.withWidth(SPINNER_ARROW_ICON_SIZE)
 				.withForeground(spinner.getForeground())
-				.withBackground(spinner.getBackground())
 				.build(),
 				RotatedIcon.Rotate.UPSIDE_DOWN);
     	JButton button = new JButton(icon);
@@ -71,7 +70,6 @@ public class MaterialSpinnerUI extends BasicSpinnerUI {
 				.withHeight(SPINNER_ARROW_ICON_SIZE)
 				.withWidth(SPINNER_ARROW_ICON_SIZE)
 				.withForeground(spinner.getForeground())
-				.withBackground(spinner.getBackground())
 				.build();
         JButton button = new JButton(icon);
         button.setOpaque(true);
