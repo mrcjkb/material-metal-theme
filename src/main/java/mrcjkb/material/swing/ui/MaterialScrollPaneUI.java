@@ -52,33 +52,44 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
     	mouseMotionAdapter = new MouseAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
+				if (!UIManager.getBoolean("MaterialSwing.autohideScrollBars")) {
+					return;
+				}
 				boolean showVerticalScrollbar = scrollpane.getLocationOnScreen().getX() + scrollpane.getWidth() - SHOW_THRESHOLD < e.getLocationOnScreen().getX();
 				boolean showHorizontalScrollbar = scrollpane.getLocationOnScreen().getY() + scrollpane.getHeight() - SHOW_THRESHOLD < e.getLocationOnScreen().getY();
-				if (showVerticalScrollbar) {
+				if (showVerticalScrollbar && null != scrollpane.getVerticalScrollBar()) {
 					scrollpane.getVerticalScrollBar().setPreferredSize(originalVerticalScrollBarSize);
-				} else if (showHorizontalScrollbar) {
+				} else if (showHorizontalScrollbar && null != scrollpane.getHorizontalScrollBar()) {
 					scrollpane.getHorizontalScrollBar().setPreferredSize(originalHorizontalScrollBarSize);
 				}
-				if (!showVerticalScrollbar && !scrollingActive && !isPointWithinComponent(scrollpane.getVerticalScrollBar(), e.getLocationOnScreen())) {
+				if (!showVerticalScrollbar && !scrollingActive && !isPointWithinComponent(scrollpane.getVerticalScrollBar(), e.getLocationOnScreen()) && null != scrollpane.getVerticalScrollBar()) {
 					scrollpane.getVerticalScrollBar().setPreferredSize(getVerticalHiddenSize());
 				}
-				if (!showHorizontalScrollbar && !scrollingActive && !isPointWithinComponent(scrollpane.getHorizontalScrollBar(), e.getLocationOnScreen())) {
+				if (!showHorizontalScrollbar && !scrollingActive && !isPointWithinComponent(scrollpane.getHorizontalScrollBar(), e.getLocationOnScreen()) && null != scrollpane.getHorizontalScrollBar()) {
 					scrollpane.getHorizontalScrollBar().setPreferredSize(getHorizontalHiddenSize());
 				}
 				revalidateScrollBars();
 			}
 		};
 		mouseExitedAdapter = new MouseAdapter() {
+
 			@Override
 			public void mouseExited(MouseEvent e) {
+				if (!UIManager.getBoolean("MaterialSwing.autohideScrollBars")) {
+					return;
+				}
 				if (!(e.getComponent() instanceof JScrollBar)
 					&& (isPointWithinComponent(scrollpane.getVerticalScrollBar(), e.getLocationOnScreen())
 							|| isPointWithinComponent(scrollpane.getHorizontalScrollBar(), e.getLocationOnScreen()))) {
 					return;
 				}
 				if (!scrollingActive) {
-					scrollpane.getVerticalScrollBar().setPreferredSize(getVerticalHiddenSize());
-					scrollpane.getHorizontalScrollBar().setPreferredSize(getHorizontalHiddenSize());
+					if (null != scrollpane.getVerticalScrollBar()) {
+						scrollpane.getVerticalScrollBar().setPreferredSize(getVerticalHiddenSize());
+					}
+					if (null != scrollpane.getHorizontalScrollBar()) {
+						scrollpane.getHorizontalScrollBar().setPreferredSize(getHorizontalHiddenSize());
+					}
 					revalidateScrollBars();
 				}
 			}
@@ -91,11 +102,14 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				scrollingActive = false;
-				if (e.getComponent() instanceof JScrollBar && !isPointWithinComponent(scrollpane.getVerticalScrollBar(), e.getLocationOnScreen())) {
+				if (!UIManager.getBoolean("MaterialSwing.autohideScrollBars")) {
+					return;
+				}
+				if (e.getComponent() instanceof JScrollBar && !isPointWithinComponent(scrollpane.getVerticalScrollBar(), e.getLocationOnScreen()) && null != scrollpane.getVerticalScrollBar()) {
 					scrollpane.getVerticalScrollBar().setPreferredSize(getVerticalHiddenSize());
 					revalidateScrollBars();
 				}
-				if (e.getComponent() instanceof JScrollBar && !isPointWithinComponent(scrollpane.getHorizontalScrollBar(), e.getLocationOnScreen())) {
+				if (e.getComponent() instanceof JScrollBar && !isPointWithinComponent(scrollpane.getHorizontalScrollBar(), e.getLocationOnScreen()) && null != scrollpane.getHorizontalScrollBar()) {
 					scrollpane.getHorizontalScrollBar().setPreferredSize(getHorizontalHiddenSize());
 					revalidateScrollBars();
 				}
@@ -119,15 +133,23 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
     			addListeners(scrollpane.getViewport());
     		}
     	});
-    	scrollpane.getHorizontalScrollBar().addMouseListener(scrollBarMouseAdapter);
-		scrollpane.getHorizontalScrollBar().addMouseListener(mouseExitedAdapter);
-		scrollpane.getVerticalScrollBar().addMouseListener(scrollBarMouseAdapter);
-		scrollpane.getVerticalScrollBar().addMouseListener(mouseExitedAdapter);
+    	if (null != scrollpane.getHorizontalScrollBar()) {
+			scrollpane.getHorizontalScrollBar().addMouseListener(scrollBarMouseAdapter);
+			scrollpane.getHorizontalScrollBar().addMouseListener(mouseExitedAdapter);
+		}
+    	if (null != scrollpane.getVerticalScrollBar()) {
+			scrollpane.getVerticalScrollBar().addMouseListener(scrollBarMouseAdapter);
+			scrollpane.getVerticalScrollBar().addMouseListener(mouseExitedAdapter);
+		}
 	}
 
 	private void revalidateScrollBars() {
-		scrollpane.getVerticalScrollBar().revalidate();
-		scrollpane.getHorizontalScrollBar().revalidate();
+		if (null != scrollpane.getVerticalScrollBar()) {
+			scrollpane.getVerticalScrollBar().revalidate();
+		}
+		if (null != scrollpane.getHorizontalScrollBar()) {
+			scrollpane.getHorizontalScrollBar().revalidate();
+		}
 	}
 	
 	private static boolean isPointWithinComponent(Component c, Point p) {
