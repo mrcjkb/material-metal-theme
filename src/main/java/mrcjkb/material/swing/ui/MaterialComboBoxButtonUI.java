@@ -26,8 +26,8 @@ public class MaterialComboBoxButtonUI extends BasicButtonUI {
 		JButton button = (JButton) c;
 		MaterialManagerListener.removeAllMaterialMouseListener(button);
 		Icon icon = DownArrowIcon.builder()
-				.withHeight(16)
-				.withWidth(16)
+				.withHeight(14)
+				.withWidth(14)
 				.withForeground(UIManager.getColor("ComboBox.foreground"))
 				.build();
 		button.setIcon(icon);
