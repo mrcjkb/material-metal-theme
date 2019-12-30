@@ -29,7 +29,6 @@ public class MaterialComboBoxButtonUI extends BasicButtonUI {
 				.withHeight(16)
 				.withWidth(16)
 				.withForeground(UIManager.getColor("ComboBox.foreground"))
-				.withBackground(UIManager.getColor("ComboBox.background"))
 				.build();
 		button.setIcon(icon);
 		button.setBackground(UIManager.getColor("MaterialSwing.accent1Color"));

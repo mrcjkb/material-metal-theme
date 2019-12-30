@@ -20,14 +20,12 @@ public class DownArrowIcon implements Icon {
     private BufferedImage image;
     
     private Color foreground;
-    private Color background;
 
 	private DownArrowIcon(Builder builder) {
 		this.width = builder.width;
 		this.height = builder.height;
 		this.image = builder.image;
 		this.foreground = builder.foreground;
-		this.background = builder.background;
 	}
 
     /**
@@ -99,7 +97,7 @@ Shape shape = null;
         ((GeneralPath) shape).lineTo(-12.354725, 11.715573);
         ((GeneralPath) shape).closePath();
 
-        g.setPaint(background);
+        g.setPaint(foreground);
         g.fill(shape);
         transformations.push(g.getTransform());
         g.transform(new AffineTransform(0.7193312f, 0.6946673f, -0.6946673f, 0.7193312f, -13.378003f, -4.3394237f));
@@ -140,7 +138,6 @@ Shape shape = null;
 		private int height = 1;
 		private BufferedImage image;
 		private Color foreground;
-		private Color background;
 
 		private Builder() {
 		}
@@ -162,11 +159,6 @@ Shape shape = null;
 
 		public Builder withForeground(Color foreground) {
 			this.foreground = foreground;
-			return this;
-		}
-
-		public Builder withBackground(Color background) {
-			this.background = background;
 			return this;
 		}
 
