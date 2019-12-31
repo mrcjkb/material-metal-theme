@@ -33,7 +33,7 @@ public class MaterialCheckBoxUI extends BasicCheckBoxUI {
 		checkBox.setBackground(UIManager.getColor("CheckBox.background"));
 		checkBox.setForeground(UIManager.getColor("CheckBox.foreground"));
 		setDefaultIcons(checkBox);
-		checkBox.addMouseListener(MaterialUIMovement.getMovement(checkBox, UIManager.getColor("MaterialSwing.accent2Color")));
+		checkBox.addMouseListener(MaterialUIMovement.getMovement(checkBox, UIManager.getColor("MaterialSwing.accent1Color")));
 	}
 
 	/**

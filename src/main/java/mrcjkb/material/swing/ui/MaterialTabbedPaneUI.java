@@ -20,7 +20,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
 	protected JTabbedPane component;
 	protected ColorUIResource selectedForeground;
-	protected ColorUIResource areaContentBackground;
 	protected ColorUIResource selectedAreaContentBackground;
 	protected ColorUIResource disableAreaContentBackground;
 	protected ColorUIResource foreground;
@@ -43,7 +42,6 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 		this.foreground = new ColorUIResource(UIManager.getColor("TabbedPane.foreground"));
 		tabbedPane.setForeground(foreground);
 		this.selectedForeground = new ColorUIResource(UIManager.getColor("TabbedPane.selectedForeground"));
-		this.areaContentBackground = new ColorUIResource(UIManager.getColor("TabbedPane.contentAreaColor"));
 		this.disableAreaContentBackground = new ColorUIResource(UIManager.getColor("TabbedPane.disabled"));
 		this.selectedAreaContentBackground = new ColorUIResource(UIManager.getColor("TabbedPane.selected"));
 		tabbedPane.setBorder(UIManager.getBorder("TabbedPane.border"));

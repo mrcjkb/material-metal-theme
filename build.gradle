@@ -1,5 +1,5 @@
 buildscript {
-    version = "0.1.2"
+    version = "0.1.3"
     description = "Material design-inspired theme for Swing's metal look and feel."
     repositories {
         mavenCentral()
