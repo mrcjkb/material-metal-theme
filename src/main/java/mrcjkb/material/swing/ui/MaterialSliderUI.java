@@ -46,7 +46,7 @@ public class MaterialSliderUI extends BasicSliderUI {
 
 		int cx = thumbRect.x + thumbRect.width / 2;
 		int cy = thumbRect.y + thumbRect.height / 2;
-		Color accent1 = UIManager.getColor("MaterialSwing.accent1Color");
+		Color accent1 = UIManager.getColor("MaterialSwing.uiHighlight");
 		if (isDragging()) {
 			int add = 1;
 			g.setColor(new Color(accent1.getRed(), accent1.getGreen(), accent1.getBlue(), 150));

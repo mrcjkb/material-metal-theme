@@ -83,6 +83,7 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 		UIManager.put("MaterialSwing.accent1Color", getAccent1());
 		UIManager.put("MaterialSwing.accent2Color", getAccent2());
 		UIManager.put("MaterialSwing.hoverColor", getHoverColor());
+		UIManager.put("MaterialSwing.uiHighlight", new ColorUIResource(isLightTheme() ? Color.LIGHT_GRAY : getAccent1()));
 		UIManager.put("MaterialSwing.uiDisabledColor", new ColorUIResource(147, 147, 147));
 		UIManager.put("MaterialSwing.lineBorderWidth", LINE_BORDER_WIDTH);
 		UIManager.put("CheckBoxUI", MaterialCheckBoxUI.class.getName());

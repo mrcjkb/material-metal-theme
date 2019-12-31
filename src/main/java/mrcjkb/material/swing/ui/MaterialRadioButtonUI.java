@@ -30,7 +30,7 @@ public class MaterialRadioButtonUI extends BasicRadioButtonUI {
 		radioButton.setBackground(UIManager.getColor("RadioButton.background"));
 		radioButton.setForeground(UIManager.getColor("RadioButton.foreground"));
 		setDefaultIcons(radioButton);
-		radioButton.addMouseListener(MaterialUIMovement.getMovement(radioButton, UIManager.getColor("MaterialSwing.accent1Color")));
+		radioButton.addMouseListener(MaterialUIMovement.getMovement(radioButton, UIManager.getColor("MaterialSwing.uiHighlight")));
 	}
 
 	/**
