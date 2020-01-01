@@ -24,6 +24,7 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
 
 import mrcjkb.material.swing.materialui.util.MaterialDrawingUtils;
 import mrcjkb.material.swing.materialui.util.MaterialManagerListener;
+import mrcjkb.material.swing.materialui.util.MaterialUIMovement;
 
 public class MaterialComboBoxUI extends BasicComboBoxUI {
 
@@ -50,6 +51,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 		comboBox.setBorder(UIManager.getBorder("ComboBox.border"));
 		comboBox.setLightWeightPopupEnabled(true);
 		comboBox.setFocusable(true);
+		comboBox.addMouseListener(MaterialUIMovement.getMovement(comboBox, UIManager.getColor("MaterialSwing.hoverColor")));
 
 		this.arc = UIManager.getInt("ComboBox.arc");
 	}

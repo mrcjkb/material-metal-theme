@@ -63,7 +63,7 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 		UIManager.put("Button.background", isLightTheme() ? Color.LIGHT_GRAY : new Color(getPrimary2().getRed(), getPrimary2().getBlue(), getPrimary2().getGreen()));
 		UIManager.put("Button.highlight", Color.LIGHT_GRAY);
 		UIManager.put("Button.select", new Color(getAccent1().getRed(), getAccent1().getBlue(), getAccent1().getGreen()));
-		UIManager.put("Button.disabledText", isLightTheme() ? Color.GRAY : getPrimary3());
+		UIManager.put("Button.disabledText", isLightTheme() ? Color.GRAY : Color.LIGHT_GRAY);
 		Border border = BorderFactory.createLineBorder(Color.LIGHT_GRAY, LINE_BORDER_WIDTH);
 		Border margin = new EmptyBorder(BUTTON_BORDER_MARGIN, BUTTON_BORDER_MARGIN, BUTTON_BORDER_MARGIN, BUTTON_BORDER_MARGIN);
 		UIManager.put("Button.border", new CompoundBorder(border, margin));
@@ -184,7 +184,7 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 
 		UIManager.put("TitledBorder.border", BorderFactory.createLineBorder(isLightTheme() ? Color.LIGHT_GRAY : Color.DARK_GRAY, LINE_BORDER_WIDTH));
 
-		Border textBorder = BorderFactory.createLineBorder(isLightTheme() ? getWhite(): Color.LIGHT_GRAY, LINE_BORDER_WIDTH);
+		Border textBorder = BorderFactory.createLineBorder(isLightTheme() ? getWhite(): getPrimary3(), LINE_BORDER_WIDTH);
 		UIManager.put("TextField.border", textBorder);
 		UIManager.put("FormattedTextField.border", textBorder);
 		UIManager.put("PasswordField.border", textBorder);
