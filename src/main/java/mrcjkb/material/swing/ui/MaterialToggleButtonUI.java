@@ -25,8 +25,7 @@ public class MaterialToggleButtonUI extends MetalToggleButtonUI {
 	
 	Color mOriginalBackground;
 	Color mOriginalForeground;
-	Border mOriginalBorder;
-	
+
 	public static ComponentUI createUI(JComponent c) {
 		return new MaterialToggleButtonUI();
     }
@@ -37,8 +36,7 @@ public class MaterialToggleButtonUI extends MetalToggleButtonUI {
     	AbstractButton button = ((AbstractButton) c);
     	mOriginalBackground = button.getBackground();
     	mOriginalForeground = button.getForeground();
-    	mOriginalBorder = button.getBorder();
-    	
+
     	button.addHierarchyListener(new HierarchyListener() {
 			
 			@Override
@@ -65,7 +63,6 @@ public class MaterialToggleButtonUI extends MetalToggleButtonUI {
             private void resetButton() {
 				button.setBackground(mOriginalBackground);
 				button.setForeground(button.isSelected() ? Color.WHITE : mOriginalForeground);
-				button.setBorder(mOriginalBorder);
 			}
         });
     	
