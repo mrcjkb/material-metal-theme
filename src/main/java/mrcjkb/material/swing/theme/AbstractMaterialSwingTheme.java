@@ -184,7 +184,7 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 
 		UIManager.put("TitledBorder.border", BorderFactory.createLineBorder(isLightTheme() ? Color.LIGHT_GRAY : Color.DARK_GRAY, LINE_BORDER_WIDTH));
 
-		Border textBorder = BorderFactory.createLineBorder(isLightTheme() ? getWhite(): getPrimary3(), LINE_BORDER_WIDTH);
+		Border textBorder = BorderFactory.createLineBorder(isLightTheme() ? getWhite(): getSecondary3(), LINE_BORDER_WIDTH);
 		UIManager.put("TextField.border", textBorder);
 		UIManager.put("FormattedTextField.border", textBorder);
 		UIManager.put("PasswordField.border", textBorder);
