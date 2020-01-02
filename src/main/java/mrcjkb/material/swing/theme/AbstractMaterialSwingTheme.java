@@ -1,8 +1,7 @@
 package mrcjkb.material.swing.theme;
 
 
-import java.awt.Color;
-import java.awt.Insets;
+import java.awt.*;
 
 import javax.swing.BorderFactory;
 import javax.swing.UIManager;
@@ -177,6 +176,10 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 		UIManager.put("ProgressBar.foreground", progressBarColor);
 		UIManager.put("ProgressBar.background", isLightTheme() ? Color.WHITE : getPrimary1());
 		UIManager.put("ProgressBar.border", BorderFactory.createEmptyBorder());
+		Dimension defaultHorizontalSize = UIManager.getDimension("ProgressBar.horizontalSize");
+		UIManager.put("ProgressBar.horizontalSize", new Dimension((int) defaultHorizontalSize.getWidth(), 4));
+		Dimension defaultVerticalSize = UIManager.getDimension("ProgressBar.verticalSize");
+		UIManager.put("ProgressBar.verticalSize", new Dimension(4, (int) (defaultVerticalSize.getHeight())));
 		UIManager.put("ProgressBarUI", MaterialProgressBarUI.class.getName());
 		
 		UIManager.put("SliderUI", MaterialSliderUI.class.getName());
