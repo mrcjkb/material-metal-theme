@@ -12,7 +12,7 @@ import mrcjkb.material.swing.materialui.util.MaterialDrawingUtils;
 
 /**
  * Code based on the ProggressBarUIs from the following two projects:
- * - IntelliJ Community: https://github.com/JetBrains/intellij-community
+ * - IntelliJ Community: https://github.com/JetBrains/intellij-community - Copyright 2000-2019 JetBrains s.r.o. Use of the source code is governed by the Apache 2.0 license, found at https://www.apache.org/licenses/LICENSE-2.0
  * - material-ui-swing: https://github.com/atarw/material-ui-swing
  */
 public class MaterialProgressBarUI extends BasicProgressBarUI {
