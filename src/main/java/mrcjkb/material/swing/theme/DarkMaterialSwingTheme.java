@@ -166,6 +166,9 @@ public class DarkMaterialSwingTheme extends AbstractMaterialSwingTheme {
 		UIManager.put("RadioButtonMenuItem.acceleratorForeground", PANEL_FOREGROUND);
 		UIManager.put("ToggleButton.select", getAccent1());
 		UIManager.put("MaterialSwing.scrollbarPressedColor", getAccent1());
+		UIManager.put("ToolTip.backgroundInactive", Color.DARK_GRAY);
+		UIManager.put("ToolTip.foregroundInactive", Color.LIGHT_GRAY);
+		UIManager.put("ToolTip.borderInactive", BorderFactory.createLineBorder(Color.DARK_GRAY));
 		setInactiveColors(INACTIVE_COLOR);
 	}
 	
