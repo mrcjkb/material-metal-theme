@@ -199,10 +199,10 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
 	}
 
 	private Dimension getVerticalHiddenSize() {
-		return UIManager.getBoolean("MaterialSwing.autohideScrollBars") && isJFileChooserScrollPane() ? verticalHiddenSize : originalVerticalScrollBarSize;
+		return UIManager.getBoolean("MaterialSwing.autohideScrollBars") && !isJFileChooserScrollPane() ? verticalHiddenSize : originalVerticalScrollBarSize;
 	}
 
 	private Dimension getHorizontalHiddenSize() {
-		return UIManager.getBoolean("MaterialSwing.autohideScrollBars") && isJFileChooserScrollPane() ? horizontalHiddenSize : originalHorizontalScrollBarSize;
+		return UIManager.getBoolean("MaterialSwing.autohideScrollBars") && !isJFileChooserScrollPane() ? horizontalHiddenSize : originalHorizontalScrollBarSize;
 	}
 }
