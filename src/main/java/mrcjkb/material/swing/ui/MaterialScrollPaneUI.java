@@ -39,7 +39,7 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
     	mouseMotionAdapter = new MouseAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
-				if (!UIManager.getBoolean("MaterialSwing.autohideScrollBars") || isJFileChooserScrollPane()) {
+				if (isAutohideScrollbarsDisabled()) {
 					return;
 				}
 				boolean showVerticalScrollbar = scrollpane.getLocationOnScreen().getX() + scrollpane.getWidth() - SHOW_THRESHOLD < e.getLocationOnScreen().getX();
@@ -62,7 +62,7 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				if (!UIManager.getBoolean("MaterialSwing.autohideScrollBars") || isJFileChooserScrollPane()) {
+				if (isAutohideScrollbarsDisabled()) {
 					return;
 				}
 				if (!(e.getComponent() instanceof JScrollBar)
@@ -71,12 +71,7 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
 					return;
 				}
 				if (!scrollingActive) {
-					if (null != scrollpane.getVerticalScrollBar()) {
-						scrollpane.getVerticalScrollBar().setPreferredSize(getVerticalHiddenSize());
-					}
-					if (null != scrollpane.getHorizontalScrollBar()) {
-						scrollpane.getHorizontalScrollBar().setPreferredSize(getHorizontalHiddenSize());
-					}
+					setScrollBarSizes();
 					revalidateScrollBars();
 				}
 			}
@@ -89,7 +84,7 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				scrollingActive = false;
-				if (!UIManager.getBoolean("MaterialSwing.autohideScrollBars") || isJFileChooserScrollPane()) {
+				if (isAutohideScrollbarsDisabled()) {
 					return;
 				}
 				if (e.getComponent() instanceof JScrollBar && !isPointWithinComponent(scrollpane.getVerticalScrollBar(), e.getLocationOnScreen()) && null != scrollpane.getVerticalScrollBar()) {
@@ -116,7 +111,8 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
     	scrollpane.getViewport().addHierarchyListener(new HierarchyListener() {
     		@Override
     		public void hierarchyChanged(HierarchyEvent aE) {
-    			removeListeners(scrollpane.getViewport());
+				setScrollBarSizes();
+				removeListeners(scrollpane.getViewport());
     			addListeners(scrollpane.getViewport());
     		}
     	});
@@ -128,6 +124,19 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
 			scrollpane.getVerticalScrollBar().addMouseListener(scrollBarMouseAdapter);
 			scrollpane.getVerticalScrollBar().addMouseListener(mouseExitedAdapter);
 		}
+	}
+
+	private void setScrollBarSizes() {
+		if (null != scrollpane.getVerticalScrollBar()) {
+			scrollpane.getVerticalScrollBar().setPreferredSize(getVerticalHiddenSize());
+		}
+		if (null != scrollpane.getHorizontalScrollBar()) {
+			scrollpane.getHorizontalScrollBar().setPreferredSize(getHorizontalHiddenSize());
+		}
+	}
+
+	private boolean isAutohideScrollbarsDisabled() {
+		return !UIManager.getBoolean("MaterialSwing.autohideScrollBars") || isJFileChooserScrollPane();
 	}
 
 	/**
@@ -162,7 +171,7 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
 	
 	/**
 	 * Recursively add the listeners to {@code aComponent} and its subcomponents.
-	 * @param aComponent
+	 * @param aComponent the {@code Component} to add the listeners to
 	 */
 	private void addListeners(Component aComponent) {
 		if (null == aComponent) {
@@ -179,7 +188,7 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
 	
 	/**
 	 * Recursively remove the listeners from {@code aComponent} and its subcomponents.
-	 * @param aComponent
+	 * @param aComponent the {@code Component} to remove the listeners from
 	 */
 	private void removeListeners(Component aComponent) {
 		if (null == aComponent) {
@@ -203,6 +212,6 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
 	}
 
 	private Dimension getHorizontalHiddenSize() {
-		return UIManager.getBoolean("MaterialSwing.autohideScrollBars") && !isJFileChooserScrollPane() ? horizontalHiddenSize : originalHorizontalScrollBarSize;
+		return isAutohideScrollbarsDisabled() ? originalHorizontalScrollBarSize : horizontalHiddenSize;
 	}
 }
