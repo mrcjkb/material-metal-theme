@@ -1,24 +1,11 @@
 package mrcjkb.material.swing.ui;
 
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.event.ContainerAdapter;
-import java.awt.event.ContainerEvent;
-import java.awt.event.HierarchyEvent;
-import java.awt.event.HierarchyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.logging.Logger;
-
-import javax.swing.JComponent;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicScrollPaneUI;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.logging.Logger;
 
 
 public class MaterialScrollPaneUI extends BasicScrollPaneUI {
@@ -52,7 +39,7 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
     	mouseMotionAdapter = new MouseAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
-				if (!UIManager.getBoolean("MaterialSwing.autohideScrollBars")) {
+				if (!UIManager.getBoolean("MaterialSwing.autohideScrollBars") || isJFileChooserScrollPane()) {
 					return;
 				}
 				boolean showVerticalScrollbar = scrollpane.getLocationOnScreen().getX() + scrollpane.getWidth() - SHOW_THRESHOLD < e.getLocationOnScreen().getX();
@@ -141,6 +128,14 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
 			scrollpane.getVerticalScrollBar().addMouseListener(scrollBarMouseAdapter);
 			scrollpane.getVerticalScrollBar().addMouseListener(mouseExitedAdapter);
 		}
+	}
+
+	/**
+	 * Checks if the scrollpane is used by a JFileChooser.
+	 * @return {@code true} if the scrollpane is used by a JFileChooser.
+	 */
+	private boolean isJFileChooserScrollPane() {
+		return scrollpane.getParent() != null && scrollpane.getParent().getParent() != null && scrollpane.getParent().getParent().getParent() instanceof JFileChooser;
 	}
 
 	private void revalidateScrollBars() {
