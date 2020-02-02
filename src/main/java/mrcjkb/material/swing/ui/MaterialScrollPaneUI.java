@@ -62,7 +62,7 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				if (!UIManager.getBoolean("MaterialSwing.autohideScrollBars")) {
+				if (!UIManager.getBoolean("MaterialSwing.autohideScrollBars") || isJFileChooserScrollPane()) {
 					return;
 				}
 				if (!(e.getComponent() instanceof JScrollBar)
@@ -89,7 +89,7 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				scrollingActive = false;
-				if (!UIManager.getBoolean("MaterialSwing.autohideScrollBars")) {
+				if (!UIManager.getBoolean("MaterialSwing.autohideScrollBars") || isJFileChooserScrollPane()) {
 					return;
 				}
 				if (e.getComponent() instanceof JScrollBar && !isPointWithinComponent(scrollpane.getVerticalScrollBar(), e.getLocationOnScreen()) && null != scrollpane.getVerticalScrollBar()) {
@@ -199,10 +199,10 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
 	}
 
 	private Dimension getVerticalHiddenSize() {
-		return UIManager.getBoolean("MaterialSwing.autohideScrollBars") ? verticalHiddenSize : originalVerticalScrollBarSize;
+		return UIManager.getBoolean("MaterialSwing.autohideScrollBars") && isJFileChooserScrollPane() ? verticalHiddenSize : originalVerticalScrollBarSize;
 	}
 
 	private Dimension getHorizontalHiddenSize() {
-		return UIManager.getBoolean("MaterialSwing.autohideScrollBars") ? horizontalHiddenSize : originalHorizontalScrollBarSize;
+		return UIManager.getBoolean("MaterialSwing.autohideScrollBars") && isJFileChooserScrollPane() ? horizontalHiddenSize : originalHorizontalScrollBarSize;
 	}
 }
