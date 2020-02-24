@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.metal.DefaultMetalTheme;
 
+import mrcjkb.material.swing.icon.filesystem.*;
 import mrcjkb.material.swing.ui.*;
 
 /**
@@ -59,16 +60,17 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 		
 		UIManager.put("ButtonUI", MaterialButtonUI.class.getName());
 		UIManager.put("Button.foreground", getBlack());
-		UIManager.put("Button.background", isLightTheme() ? Color.LIGHT_GRAY : new Color(getPrimary2().getRed(), getPrimary2().getBlue(), getPrimary2().getGreen()));
+		Color buttonBackground = isLightTheme() ? Color.LIGHT_GRAY : new Color(getPrimary1().getRed(), getPrimary1().getBlue(), getPrimary1().getGreen());
+		UIManager.put("Button.background", buttonBackground);
 		UIManager.put("Button.highlight", Color.LIGHT_GRAY);
 		UIManager.put("Button.select", new Color(getAccent1().getRed(), getAccent1().getBlue(), getAccent1().getGreen()));
 		UIManager.put("Button.disabledText", isLightTheme() ? Color.GRAY : Color.LIGHT_GRAY);
-		Border border = BorderFactory.createLineBorder(Color.LIGHT_GRAY, LINE_BORDER_WIDTH);
+		Border border = BorderFactory.createLineBorder(buttonBackground, LINE_BORDER_WIDTH);
 		Border margin = new EmptyBorder(BUTTON_BORDER_MARGIN, BUTTON_BORDER_MARGIN, BUTTON_BORDER_MARGIN, BUTTON_BORDER_MARGIN);
 		UIManager.put("Button.border", new CompoundBorder(border, margin));
 		
 		UIManager.put("ToggleButtonUI", MaterialToggleButtonUI.class.getName());
-		UIManager.put("ToggleButton.background", isLightTheme() ? Color.LIGHT_GRAY : new Color(getSecondary3().getRed(), getSecondary3().getBlue(), getSecondary3().getGreen()));
+		UIManager.put("ToggleButton.background", isLightTheme() ? Color.LIGHT_GRAY : new Color(getPrimary1().getRed(), getPrimary1().getBlue(), getPrimary1().getGreen()));
 		UIManager.put("ToggleButton.highlight", Color.LIGHT_GRAY);
 		UIManager.put("ToggleButton.border", new CompoundBorder(border, margin));
 		UIManager.put("ToggleButton.disabledText", Color.LIGHT_GRAY);
@@ -216,6 +218,15 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 		UIManager.put("SpinnerUI", MaterialSpinnerUI.class.getName());
 		UIManager.put("TreeUI", MaterialTreeUI.class.getName());
 		UIManager.put("Tree.selectionForeground", getBlack());
+
+		UIManager.put("FileView.directoryIcon", new FolderClosedIcon());
+		UIManager.put("Tree.openIcon", new FolderOpenIcon());
+		UIManager.put("Tree.closedIcon", new FolderClosedIcon());
+		UIManager.put("Tree.leafIcon", new FileIcon());
+		UIManager.put("FileView.fileIcon", new FileIcon());
+		UIManager.put("FileChooser.upFolderIcon", new UpFolderIcon());
+		UIManager.put("FileChooser.homeFolderIcon", new HomeIcon());
+		UIManager.put("FileChooser.newFolderIcon", new NewFolderIcon());
 	}
 	
 	protected void setInactiveColors(ColorUIResource inactiveColor) {
