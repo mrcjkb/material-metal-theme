@@ -50,31 +50,21 @@ public class MaterialSliderUI extends BasicSliderUI {
 		g.fillOval(cx - radius, cy - radius, radius * 2, radius * 2);
 
 		// need to redraw loaded part of progress line
-		Line loaded = getTrack(true);
+		Line loaded = getTrack();
 		g.drawLine(loaded.x1, loaded.y1, loaded.x2, loaded.y2);
     }
 	
-	private Line getTrack(boolean loaded) {
+	private Line getTrack() {
 		if (slider.getOrientation () == JSlider.HORIZONTAL) {
 			Line left = new Line (trackRect.x, thumbRect.y + thumbRect.height / 2, thumbRect.x + thumbRect.width / 2, thumbRect.y + thumbRect.height / 2);
 			Line right = new Line (thumbRect.x + thumbRect.width / 2, thumbRect.y + thumbRect.height / 2, trackRect.x + trackRect.width, thumbRect.y + thumbRect.height / 2);
 
-			if (loaded) {
-				return slider.getInverted () ? right : left;
-			}
-			else {
-				return slider.getInverted () ? left : right;
-			}
+			return slider.getInverted () ? right : left;
 		} else {
 			Line top = new Line (thumbRect.x + thumbRect.width / 2, trackRect.y, thumbRect.x + thumbRect.width / 2, thumbRect.y + thumbRect.height / 2);
 			Line bottom = new Line (thumbRect.x + thumbRect.width / 2, thumbRect.y + thumbRect.height / 2, thumbRect.x + thumbRect.width / 2, trackRect.y + trackRect.height);
 
-			if (loaded) {
-				return slider.getInverted () ? top : bottom;
-			}
-			else {
-				return slider.getInverted () ? bottom : top;
-			}
+			return slider.getInverted () ? top : bottom;
 		}
 	}
 	
