@@ -6,8 +6,6 @@ import mrcjkb.material.swing.ui.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.metal.DefaultMetalTheme;
 import java.awt.*;
@@ -20,7 +18,9 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 
 	protected static final ColorUIResource WHITE = new ColorUIResource(Color.WHITE);
 	private static final int LINE_BORDER_WIDTH = 2;
-	public static final int BUTTON_BORDER_MARGIN = 5;
+	private static final int LINE_BORDER_HEIGHT = 2;
+	private static final int BUTTON_BORDER_MARGIN = 5;
+	private static final int MENU_ITEM_MARGIN = 4;
 	
 	protected ColorUIResource primary1;
 	protected ColorUIResource primary2;
@@ -64,15 +64,17 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 		UIManager.put("Button.highlight", Color.LIGHT_GRAY);
 		UIManager.put("Button.select", new Color(getAccent1().getRed(), getAccent1().getBlue(), getAccent1().getGreen()));
 		UIManager.put("Button.disabledText", isLightTheme() ? Color.GRAY : Color.LIGHT_GRAY);
-		Border border = BorderFactory.createLineBorder(buttonBackground, LINE_BORDER_WIDTH);
-		Border margin = new EmptyBorder(BUTTON_BORDER_MARGIN, BUTTON_BORDER_MARGIN, BUTTON_BORDER_MARGIN, BUTTON_BORDER_MARGIN);
-		UIManager.put("Button.border", new CompoundBorder(border, margin));
-		
+		UIManager.put("Button.disabledBackground", buttonBackground);
+		UIManager.put("Button.disabledForeground", isLightTheme() ? Color.GRAY : Color.LIGHT_GRAY);
+		UIManager.put("Button.border", BorderFactory.createEmptyBorder(BUTTON_BORDER_MARGIN, BUTTON_BORDER_MARGIN, BUTTON_BORDER_MARGIN, BUTTON_BORDER_MARGIN));
+
 		UIManager.put("ToggleButtonUI", MaterialToggleButtonUI.class.getName());
 		UIManager.put("ToggleButton.background", isLightTheme() ? Color.LIGHT_GRAY : new Color(getPrimary1().getRed(), getPrimary1().getBlue(), getPrimary1().getGreen()));
+		UIManager.put("ToggleButton.disabledBackground", buttonBackground);
 		UIManager.put("ToggleButton.highlight", Color.LIGHT_GRAY);
-		UIManager.put("ToggleButton.border", new CompoundBorder(border, margin));
+		UIManager.put("ToggleButton.border", BorderFactory.createEmptyBorder(BUTTON_BORDER_MARGIN, BUTTON_BORDER_MARGIN, BUTTON_BORDER_MARGIN, BUTTON_BORDER_MARGIN));
 		UIManager.put("ToggleButton.disabledText", Color.LIGHT_GRAY);
+		UIManager.put("ToggleButton.disabledForeground", isLightTheme() ? Color.GRAY : Color.LIGHT_GRAY);
 
 		UIManager.put("MaterialSwing.primary1Color", getPrimary1());
 		UIManager.put("MaterialSwing.primary2Color", getPrimary2());
@@ -128,6 +130,7 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 		UIManager.put("FormattedTextField.selectionBackground", isLightTheme() ? Color.LIGHT_GRAY : getAccent1());
 		UIManager.put("FormattedTextField.selectionColor", getAccent1());
 		UIManager.put("TextArea.selectionBackground", getAccent1());
+		UIManager.put("PasswordField.selectionBackground", getAccent1());
 
 		UIManager.put("TabbedPane.selectHighlight", new ColorUIResource(isLightTheme() ? Color.LIGHT_GRAY : getAccent1()));
 		UIManager.put("TabbedPane.selected", new ColorUIResource(isLightTheme() ? Color.LIGHT_GRAY : getAccent1()));
@@ -140,10 +143,8 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 		UIManager.put("Separator.foreground", new ColorUIResource(isLightTheme() ? getPrimary1() : getPrimary1()));
 		UIManager.put("Separator.background", new ColorUIResource(new Color(0, 0, 0, 0)));
 		UIManager.put("Menu.selectionBackground", new ColorUIResource(getAccent1()));
-		UIManager.put("Menu.border", BorderFactory.createLineBorder(new ColorUIResource(new Color(0, 0, 0, 0)), LINE_BORDER_WIDTH));
-		border = BorderFactory.createLineBorder(new ColorUIResource(new Color(0, 0, 0, 0)), LINE_BORDER_WIDTH);
-		margin = new EmptyBorder(2, 2, 2, 2);
-		Border menuItemBorder = new CompoundBorder(border, margin);
+		UIManager.put("Menu.border", BorderFactory.createEmptyBorder(MENU_ITEM_MARGIN, MENU_ITEM_MARGIN, MENU_ITEM_MARGIN, MENU_ITEM_MARGIN));
+		var menuItemBorder = BorderFactory.createEmptyBorder(MENU_ITEM_MARGIN, MENU_ITEM_MARGIN, MENU_ITEM_MARGIN, MENU_ITEM_MARGIN);
 		UIManager.put("MenuItem.border", menuItemBorder);
 		UIManager.put("MenuItem.selectionBackground", new ColorUIResource(isLightTheme() ? getPrimary1().brighter() : getAccent1()));
 		UIManager.put("MenuItem.foreground", getBlack());
@@ -168,10 +169,10 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 
 		UIManager.put("ToolTip.background", isLightTheme() ? Color.WHITE : getPrimary1());
 		UIManager.put("ToolTip.foreground", isLightTheme() ? Color.BLACK : Color.WHITE);
-		UIManager.put("ToolTip.border", BorderFactory.createLineBorder(isLightTheme() ? getPrimary1() : WHITE, LINE_BORDER_WIDTH));
+		UIManager.put("ToolTip.border", BorderFactory.createEmptyBorder(LINE_BORDER_HEIGHT, LINE_BORDER_WIDTH, LINE_BORDER_HEIGHT, LINE_BORDER_WIDTH));
 
 		UIManager.put("ToolBar.background", new ColorUIResource(new Color(0, 0, 0, 0)));
-		UIManager.put("ToolBar.border", BorderFactory.createLineBorder(new ColorUIResource(new Color(0, 0, 0, 0)), LINE_BORDER_WIDTH));
+		UIManager.put("ToolBar.border", BorderFactory.createEmptyBorder(LINE_BORDER_HEIGHT, LINE_BORDER_WIDTH, LINE_BORDER_HEIGHT, LINE_BORDER_WIDTH));
 		
 		Color progressBarColor = new ColorUIResource(isLightTheme() ? getPrimary1() : getAccent1());
 		UIManager.put("ProgressBar.foreground", progressBarColor);
@@ -188,11 +189,12 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 
 		UIManager.put("TitledBorder.border", BorderFactory.createLineBorder(isLightTheme() ? Color.LIGHT_GRAY : Color.DARK_GRAY, LINE_BORDER_WIDTH));
 
-		Border textBorder = BorderFactory.createLineBorder(isLightTheme() ? getWhite(): getSecondary3(), LINE_BORDER_WIDTH);
+		Border textBorder = BorderFactory.createEmptyBorder(LINE_BORDER_HEIGHT, LINE_BORDER_WIDTH, LINE_BORDER_HEIGHT, LINE_BORDER_WIDTH);
 		UIManager.put("TextField.border", textBorder);
 		UIManager.put("FormattedTextField.border", textBorder);
 		UIManager.put("PasswordField.border", textBorder);
 		UIManager.put("ComboBox.border", textBorder);
+		UIManager.put("ComboBox.borderItems", textBorder);
 		
 		UIManager.put("TextField.caretForeground", getBlack());
 		UIManager.put("FormattedTextField.caretForeground", getBlack());

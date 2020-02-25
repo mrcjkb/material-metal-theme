@@ -6,13 +6,11 @@ import mrcjkb.material.swing.materialui.util.MaterialManagerListener;
 import mrcjkb.material.swing.materialui.util.MaterialUIMovement;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicComboBoxEditor;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import java.awt.*;
-import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
 public class MaterialComboBoxUI extends BasicComboBoxUI {
@@ -22,12 +20,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 	}
 
 	protected Color background;
-	protected FocusListener focusListener;
 	protected int arc = 2; //default value
-
-	public MaterialComboBoxUI() {
-		focusListener = new FocusListenerColor();
-	}
 
 	@Override
 	public void installUI(JComponent c) {
@@ -95,45 +88,6 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 		return super.createFocusListener();
 	}
 
-	protected class FocusListenerColor implements FocusListener {
-
-		private Border focus;
-		private Border unfocus;
-
-		public FocusListenerColor() {
-			focus = BorderFactory.createLineBorder(UIManager.getColor("MaterialSwing.accent1Color"), UIManager.getInt("MaterialSwing.lineBorderWidth"));
-			unfocus = UIManager.getBorder("ComboBox.border");
-		}
-
-		@Override
-		public void focusGained(FocusEvent e) {
-			if (e.getComponent() == null) {
-				return;
-			}
-			JComboBox<?> cb = (JComboBox<?>) e.getComponent();
-			if (focus != null) {
-				cb.setBorder(focus);
-				cb.repaint();
-				arrowButton.setOpaque(true);
-				arrowButton.repaint();
-			}
-		}
-
-		@Override
-		public void focusLost(FocusEvent e) {
-			if (e.getComponent() == null) {
-				return;
-			}
-			JComboBox<?> cb = (JComboBox<?>) e.getComponent();
-			if (unfocus != null) {
-				cb.setBorder(unfocus);
-				cb.repaint();
-				arrowButton.setOpaque(false);
-				arrowButton.repaint();
-			}
-		}
-	}
-	
 	public static class MaterialComboBoxRenderer extends BasicComboBoxRenderer {
 
 		private static final long serialVersionUID = 5430108421010322387L;
