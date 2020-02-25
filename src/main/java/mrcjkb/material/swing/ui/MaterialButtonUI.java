@@ -19,12 +19,6 @@ import java.beans.PropertyChangeListener;
 
 public class MaterialButtonUI extends BasicButtonUI{
 
-	public enum StateButton {
-	    DISABLE,
-	    DEFAULT,
-	    NORMAL
-	}
-	
 	public static ComponentUI createUI(final JComponent c) {
 		return new MaterialButtonUI();
 	}
@@ -105,7 +99,7 @@ public class MaterialButtonUI extends BasicButtonUI{
 	@Override
 	protected void paintText(Graphics g, AbstractButton b, Rectangle textRect, String text) {
 		super.paintText(g, b, textRect, text);
-		paintStateButton(b, g, StateButton.DISABLE);
+		paintStateButton(b, g);
 	}
 
 	private void paintBackground(Graphics g, JComponent c) {
@@ -130,7 +124,7 @@ public class MaterialButtonUI extends BasicButtonUI{
 			}
 		}
 
-		paintStateButton(c, g, StateButton.DISABLE);
+		paintStateButton(c, g);
 
 	}
 
@@ -228,19 +222,7 @@ public class MaterialButtonUI extends BasicButtonUI{
 		}
 	}
 
-
-	protected void paintStateButton(JComponent c, Graphics g, StateButton disable) {
-		if (StateButton.DISABLE.equals(disable)) {
-			if (!c.isEnabled()) {
-				paintStateButton(c, g);
-			}
-		}
-	}
-
 	protected class EventEnableButton implements PropertyChangeListener {
-
-		private String proprietyNameEnableEvent = "enabled";
-		private String proprietyNameDefaultEvent = "defaultButton";
 
 		@Override
 		public void propertyChange(PropertyChangeEvent evt) {
@@ -248,6 +230,8 @@ public class MaterialButtonUI extends BasicButtonUI{
 				throw new IllegalArgumentException("Input null");
 			}
 
+			String proprietyNameEnableEvent = "enabled";
+			String proprietyNameDefaultEvent = "defaultButton";
 			if (evt.getPropertyName().equals(proprietyNameEnableEvent) && (boolean) evt.getNewValue()) {
 				button.setBackground(background);
 				button.setForeground(foreground);

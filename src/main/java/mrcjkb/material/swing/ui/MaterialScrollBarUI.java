@@ -25,15 +25,13 @@ public class MaterialScrollBarUI extends BasicScrollBarUI {
     @Override
 	protected JButton createDecreaseButton(int orientation)  {
     	JButton button = super.createDecreaseButton(orientation);
-    	JButton blankButton = createBlankButton(orientation, button);
-        return blankButton;
+			return createBlankButton(orientation, button);
     }
 
     @Override
 	protected JButton createIncreaseButton(int orientation)  {
         JButton button = super.createIncreaseButton(orientation);
-        JButton blankButton = createBlankButton(orientation, button);
-        return blankButton;
+			return createBlankButton(orientation, button);
     }
     
     private JButton createBlankButton(int orientation, JButton button) {

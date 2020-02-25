@@ -72,8 +72,7 @@ public class MaterialTableUI extends BasicTableUI {
 	}
 	
 	private static JTextField initTextField() {
-        JTextField textField = new JTextField();
-        return textField;
+		return new JTextField();
     }
 	
 	private static JTextField initTextField(JTextField textField) {
