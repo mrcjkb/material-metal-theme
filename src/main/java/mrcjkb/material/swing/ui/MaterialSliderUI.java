@@ -1,18 +1,11 @@
 package mrcjkb.material.swing.ui;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import mrcjkb.material.swing.materialui.util.MaterialDrawingUtils;
 
-import javax.swing.JComponent;
-import javax.swing.JSlider;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicSliderUI;
-
-import mrcjkb.material.swing.materialui.util.MaterialDrawingUtils;
+import java.awt.*;
 
 public class MaterialSliderUI extends BasicSliderUI {
 

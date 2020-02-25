@@ -1,24 +1,13 @@
 package mrcjkb.material.swing.ui;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import mrcjkb.material.swing.materialui.util.MaterialDrawingUtils;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicScrollBarUI;
-
-import mrcjkb.material.swing.materialui.util.MaterialDrawingUtils;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MaterialScrollBarUI extends BasicScrollBarUI {
 	

@@ -1,30 +1,19 @@
 package mrcjkb.material.swing.ui;
 
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Cursor;
-import java.awt.Graphics;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import mrcjkb.material.swing.materialui.util.MaterialDrawingUtils;
+import mrcjkb.material.swing.materialui.util.MaterialManagerListener;
+import mrcjkb.material.swing.materialui.util.MaterialUIMovement;
 
-import javax.swing.BorderFactory;
-import javax.swing.ComboBoxEditor;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JList;
-import javax.swing.ListCellRenderer;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicComboBoxEditor;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import javax.swing.plaf.basic.BasicComboBoxUI;
-
-import mrcjkb.material.swing.materialui.util.MaterialDrawingUtils;
-import mrcjkb.material.swing.materialui.util.MaterialManagerListener;
-import mrcjkb.material.swing.materialui.util.MaterialUIMovement;
+import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 public class MaterialComboBoxUI extends BasicComboBoxUI {
 

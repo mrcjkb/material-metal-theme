@@ -1,11 +1,7 @@
 package mrcjkb.material.swing.util;
 
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-
-import javax.swing.Icon;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * @author Rob Camick: https://tips4java.wordpress.com/2009/04/06/rotated-icon/

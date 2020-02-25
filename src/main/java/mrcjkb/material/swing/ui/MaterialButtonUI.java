@@ -1,32 +1,21 @@
 package mrcjkb.material.swing.ui;
 
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
-import java.awt.Stroke;
-import java.awt.event.HierarchyEvent;
-import java.awt.event.HierarchyListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-
-import javax.swing.AbstractButton;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.UIManager;
-import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicArrowButton;
-import javax.swing.plaf.basic.BasicButtonListener;
-import javax.swing.plaf.basic.BasicButtonUI;
-
 import mrcjkb.material.swing.icon.combobox.DownArrowIcon;
 import mrcjkb.material.swing.materialui.util.MaterialDrawingUtils;
 import mrcjkb.material.swing.materialui.util.MaterialManagerListener;
 import mrcjkb.material.swing.materialui.util.MaterialUIMovement;
+
+import javax.swing.*;
+import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicArrowButton;
+import javax.swing.plaf.basic.BasicButtonListener;
+import javax.swing.plaf.basic.BasicButtonUI;
+import java.awt.*;
+import java.awt.event.HierarchyEvent;
+import java.awt.event.HierarchyListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 public class MaterialButtonUI extends BasicButtonUI{
 

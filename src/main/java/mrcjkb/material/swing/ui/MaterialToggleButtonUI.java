@@ -1,25 +1,19 @@
 package mrcjkb.material.swing.ui;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.awt.event.HierarchyEvent;
-import java.awt.event.HierarchyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import mrcjkb.material.swing.materialui.util.MaterialDrawingUtils;
+import mrcjkb.material.swing.materialui.util.MaterialManagerListener;
+import mrcjkb.material.swing.materialui.util.MaterialUIMovement;
 
-import javax.swing.AbstractButton;
-import javax.swing.JComponent;
-import javax.swing.UIManager;
-import javax.swing.border.Border;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.metal.MetalToggleButtonUI;
-
-import mrcjkb.material.swing.materialui.util.MaterialDrawingUtils;
-import mrcjkb.material.swing.materialui.util.MaterialManagerListener;
-import mrcjkb.material.swing.materialui.util.MaterialUIMovement;
+import java.awt.*;
+import java.awt.event.HierarchyEvent;
+import java.awt.event.HierarchyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MaterialToggleButtonUI extends MetalToggleButtonUI {
 	

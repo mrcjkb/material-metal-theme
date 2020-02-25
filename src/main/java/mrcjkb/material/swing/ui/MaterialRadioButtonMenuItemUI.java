@@ -1,18 +1,13 @@
 package mrcjkb.material.swing.ui;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
-import javax.swing.Icon;
-import javax.swing.JComponent;
-import javax.swing.JRadioButtonMenuItem;
-import javax.swing.UIManager;
-import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicRadioButtonMenuItemUI;
-
 import mrcjkb.material.swing.icon.radiobutton.RadioButtonCheckedIcon;
 import mrcjkb.material.swing.icon.radiobutton.RadioButtonUncheckedIcon;
 import mrcjkb.material.swing.materialui.util.MaterialDrawingUtils;
+
+import javax.swing.*;
+import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicRadioButtonMenuItemUI;
+import java.awt.*;
 
 public class MaterialRadioButtonMenuItemUI extends BasicRadioButtonMenuItemUI {
 

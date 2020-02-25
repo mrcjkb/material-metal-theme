@@ -1,27 +1,16 @@
 package mrcjkb.material.swing.materialui.util;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComponent;
-import javax.swing.JRadioButton;
-import javax.swing.Timer;
-import javax.swing.UIManager;
-import javax.swing.plaf.ColorUIResource;
-
 import mrcjkb.material.swing.icon.checkbox.CheckboxCheckedIcon;
 import mrcjkb.material.swing.icon.checkbox.CheckboxUncheckedIcon;
 import mrcjkb.material.swing.icon.radiobutton.RadioButtonCheckedIcon;
 import mrcjkb.material.swing.icon.radiobutton.RadioButtonUncheckedIcon;
 import mrcjkb.material.swing.ui.MaterialCheckBoxUI;
 import mrcjkb.material.swing.ui.MaterialRadioButtonUI;
+
+import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
+import java.awt.*;
+import java.awt.event.*;
 
 public class MaterialUITimer implements MouseListener, ActionListener, MouseMotionListener {
 

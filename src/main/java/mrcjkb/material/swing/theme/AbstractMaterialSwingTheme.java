@@ -1,18 +1,15 @@
 package mrcjkb.material.swing.theme;
 
 
-import java.awt.*;
+import mrcjkb.material.swing.ui.*;
 
-import javax.swing.BorderFactory;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.metal.DefaultMetalTheme;
-
-import mrcjkb.material.swing.icon.filesystem.*;
-import mrcjkb.material.swing.ui.*;
+import java.awt.*;
 
 /**
  * Abstract class for the material Metal Theme
@@ -219,6 +216,7 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 		UIManager.put("TreeUI", MaterialTreeUI.class.getName());
 		UIManager.put("Tree.selectionForeground", getBlack());
 
+		/*
 		UIManager.put("FileView.directoryIcon", new FolderClosedIcon());
 		UIManager.put("Tree.openIcon", new FolderOpenIcon());
 		UIManager.put("Tree.closedIcon", new FolderClosedIcon());
@@ -227,6 +225,7 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 		UIManager.put("FileChooser.upFolderIcon", new UpFolderIcon());
 		UIManager.put("FileChooser.homeFolderIcon", new HomeIcon());
 		UIManager.put("FileChooser.newFolderIcon", new NewFolderIcon());
+		 */
 	}
 	
 	protected void setInactiveColors(ColorUIResource inactiveColor) {

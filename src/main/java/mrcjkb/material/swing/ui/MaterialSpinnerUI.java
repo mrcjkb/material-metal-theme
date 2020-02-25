@@ -1,21 +1,14 @@
 package mrcjkb.material.swing.ui;
 
-import java.awt.Component;
-import java.awt.Graphics;
-
-import javax.swing.BorderFactory;
-import javax.swing.Icon;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JSpinner;
-import javax.swing.UIManager;
-import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicSpinnerUI;
-
 import mrcjkb.material.swing.icon.combobox.DownArrowIcon;
 import mrcjkb.material.swing.materialui.util.MaterialDrawingUtils;
 import mrcjkb.material.swing.materialui.util.MaterialUIMovement;
 import mrcjkb.material.swing.util.RotatedIcon;
+
+import javax.swing.*;
+import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicSpinnerUI;
+import java.awt.*;
 
 public class MaterialSpinnerUI extends BasicSpinnerUI {
 

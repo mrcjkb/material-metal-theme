@@ -1,8 +1,7 @@
 package mrcjkb.material.swing.materialui.util;
 
-import java.awt.Color;
-
 import javax.swing.plaf.BorderUIResource;
+import java.awt.*;
 
 public class MaterialBorders {
 

@@ -1,15 +1,11 @@
 package mrcjkb.material.swing.ui;
 
-import javax.swing.AbstractButton;
-import javax.swing.Icon;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.UIManager;
-import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicButtonUI;
-
 import mrcjkb.material.swing.icon.combobox.DownArrowIcon;
 import mrcjkb.material.swing.materialui.util.MaterialManagerListener;
+
+import javax.swing.*;
+import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicButtonUI;
 
 public class MaterialComboBoxButtonUI extends BasicButtonUI {
 

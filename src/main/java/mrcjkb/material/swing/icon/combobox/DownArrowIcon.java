@@ -1,12 +1,11 @@
 package mrcjkb.material.swing.icon.combobox;
 
 
-
+import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.*;
-import java.awt.image.*;
-
-import javax.swing.Icon;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.GeneralPath;
+import java.awt.image.BufferedImage;
 
 public class DownArrowIcon implements Icon {
 

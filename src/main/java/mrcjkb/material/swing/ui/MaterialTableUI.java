@@ -1,28 +1,13 @@
 package mrcjkb.material.swing.ui;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Cursor;
-import java.awt.Graphics;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import mrcjkb.material.swing.materialui.util.MaterialDrawingUtils;
 
-import javax.swing.DefaultCellEditor;
-import javax.swing.ImageIcon;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTableUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
-
-import mrcjkb.material.swing.materialui.util.MaterialDrawingUtils;
+import java.awt.*;
 
 public class MaterialTableUI extends BasicTableUI {
 

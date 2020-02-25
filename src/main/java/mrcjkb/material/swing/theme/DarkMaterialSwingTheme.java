@@ -1,10 +1,8 @@
 package mrcjkb.material.swing.theme;
 
-import java.awt.Color;
-
-import javax.swing.BorderFactory;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
+import java.awt.*;
 
 /**
  * Dark material theme for the Swing Metal LAF.

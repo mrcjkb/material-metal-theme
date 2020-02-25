@@ -1,18 +1,12 @@
 package mrcjkb.material.swing.ui;
 
+import mrcjkb.material.swing.materialui.util.MaterialDrawingUtils;
+
 import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
-
-import mrcjkb.material.swing.materialui.util.MaterialDrawingUtils;
-import mrcjkb.material.swing.materialui.util.MaterialUIMovement;
-
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseMotionListener;
 
 public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 

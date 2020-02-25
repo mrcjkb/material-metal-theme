@@ -1,20 +1,15 @@
 package mrcjkb.material.swing.ui;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
-import javax.swing.Icon;
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JComponent;
-import javax.swing.UIManager;
-import javax.swing.plaf.ComponentUI;
-import javax.swing.plaf.basic.BasicCheckBoxMenuItemUI;
-
 import mrcjkb.material.swing.icon.checkbox.CheckboxCheckedIcon;
 import mrcjkb.material.swing.icon.checkbox.CheckboxDisableIcon;
 import mrcjkb.material.swing.icon.checkbox.CheckboxUncheckDisableIcon;
 import mrcjkb.material.swing.icon.checkbox.CheckboxUncheckedIcon;
 import mrcjkb.material.swing.materialui.util.MaterialDrawingUtils;
+
+import javax.swing.*;
+import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicCheckBoxMenuItemUI;
+import java.awt.*;
 
 public class MaterialCheckBoxMenuItemUI extends BasicCheckBoxMenuItemUI {
 
