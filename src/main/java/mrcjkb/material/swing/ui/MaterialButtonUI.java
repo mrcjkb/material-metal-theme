@@ -12,10 +12,18 @@ import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicButtonListener;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
+import java.awt.event.HierarchyEvent;
+import java.awt.event.HierarchyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class MaterialButtonUI extends BasicButtonUI{
+
+	public enum StateButton {
+		DISABLE,
+		DEFAULT,
+		NORMAL
+	}
 
 	public static ComponentUI createUI(final JComponent c) {
 		return new MaterialButtonUI();
@@ -42,7 +50,7 @@ public class MaterialButtonUI extends BasicButtonUI{
 		defaultBackground = UIManager.getColor("Button[Default].background");
 		defaultForeground = UIManager.getColor("Button[Default].foreground");
 		button.setFocusable(false);
-		
+
 		button.addHierarchyListener(arg0 -> {
 			defaultBackground = button.getBackground();
 			defaultForeground = button.getForeground();
@@ -93,7 +101,7 @@ public class MaterialButtonUI extends BasicButtonUI{
 	@Override
 	protected void paintText(Graphics g, AbstractButton b, Rectangle textRect, String text) {
 		super.paintText(g, b, textRect, text);
-		paintStateButton(b, g);
+		paintStateButton(b, g, StateButton.DISABLE);
 	}
 
 	private void paintBackground(Graphics g, JComponent c) {
@@ -118,7 +126,7 @@ public class MaterialButtonUI extends BasicButtonUI{
 			}
 		}
 
-		paintStateButton(c, g);
+		paintStateButton(c, g, StateButton.DISABLE);
 
 	}
 
@@ -212,6 +220,15 @@ public class MaterialButtonUI extends BasicButtonUI{
 		if (!b.isEnabled()) {
 			b.setBackground(disabledBackground);
 			b.setForeground(disabledForeground);
+		}
+	}
+
+
+	protected void paintStateButton(JComponent c, Graphics g, StateButton disable) {
+		if (StateButton.DISABLE.equals(disable)) {
+			if (!c.isEnabled()) {
+				paintStateButton(c, g);
+			}
 		}
 	}
 
