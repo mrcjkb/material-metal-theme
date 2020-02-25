@@ -41,7 +41,7 @@ public class MaterialTableHeaderUI extends BasicTableHeaderUI {
 		super.paint(MaterialDrawingUtils.getAliasedGraphics(g), c);
 	}
 	
-	public class MaterialTableHeaderCellRenderer extends DefaultTableCellRenderer {
+	public static class MaterialTableHeaderCellRenderer extends DefaultTableCellRenderer {
 
 		private static final long serialVersionUID = 1L;
 

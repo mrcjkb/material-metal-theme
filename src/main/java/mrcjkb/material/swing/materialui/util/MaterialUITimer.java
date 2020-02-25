@@ -181,8 +181,8 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
     
     /**
      * Set the icon background of a check box
-     * @param checkBox
-     * @param color
+     * @param checkBox the check box to set
+     * @param color the background colour
      */
     private static void setCheckboxIconHover(JCheckBox checkBox, Color color) {
     	checkBox.setIcon(CheckboxUncheckedIcon.builder()
@@ -198,8 +198,8 @@ public class MaterialUITimer implements MouseListener, ActionListener, MouseMoti
     
     /**
      * Set the icon background of a radio button
-     * @param radioButton
-     * @param color
+     * @param radioButton the radio button to set
+     * @param color the background colour
      */
     private static void setRadioButtonIconHover(JRadioButton radioButton, Color color) {
     	radioButton.setIcon(RadioButtonUncheckedIcon.builder()

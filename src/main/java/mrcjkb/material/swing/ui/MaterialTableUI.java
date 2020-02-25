@@ -80,7 +80,7 @@ public class MaterialTableUI extends BasicTableUI {
         return textField;
     }
 	
-	public class MaterialTableCellEditor extends DefaultCellEditor {
+	public static class MaterialTableCellEditor extends DefaultCellEditor {
 
 		private static final long serialVersionUID = 1L;
 
@@ -144,7 +144,7 @@ public class MaterialTableUI extends BasicTableUI {
 		}
 	}
 	
-	class MaterialTableCellRendererCheckBox extends JCheckBox implements TableCellRenderer {
+	static class MaterialTableCellRendererCheckBox extends JCheckBox implements TableCellRenderer {
 
 		private static final long serialVersionUID = 1L;
 
