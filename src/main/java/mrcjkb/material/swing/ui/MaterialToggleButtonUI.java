@@ -5,13 +5,9 @@ import mrcjkb.material.swing.materialui.util.MaterialManagerListener;
 import mrcjkb.material.swing.materialui.util.MaterialUIMovement;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.metal.MetalToggleButtonUI;
 import java.awt.*;
-import java.awt.event.HierarchyEvent;
-import java.awt.event.HierarchyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -31,14 +27,10 @@ public class MaterialToggleButtonUI extends MetalToggleButtonUI {
     	mOriginalBackground = button.getBackground();
     	mOriginalForeground = button.getForeground();
 
-    	button.addHierarchyListener(new HierarchyListener() {
-			
-			@Override
-			public void hierarchyChanged(HierarchyEvent arg0) {
+    	button.addHierarchyListener(arg0 -> {
 				MaterialManagerListener.removeAllMaterialMouseListener(button);
 				button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor("MaterialSwing.accent1Color")));
-			}
-		});
+			});
 
     	button.addMouseListener(new MouseAdapter() {
     		
@@ -60,12 +52,7 @@ public class MaterialToggleButtonUI extends MetalToggleButtonUI {
 			}
         });
     	
-    	button.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent aE) {
-				button.setForeground(button.isSelected() ? Color.WHITE : mOriginalForeground);
-			}
-		});
+    	button.addChangeListener(aE -> button.setForeground(button.isSelected() ? Color.WHITE : mOriginalForeground));
 	}
 	
 	@Override

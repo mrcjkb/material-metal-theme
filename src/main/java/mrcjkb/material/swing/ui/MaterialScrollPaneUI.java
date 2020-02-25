@@ -4,7 +4,10 @@ import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicScrollPaneUI;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ContainerAdapter;
+import java.awt.event.ContainerEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.logging.Logger;
 
 
@@ -108,14 +111,11 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
 				removeListeners(aE.getComponent());
 			}
     	});
-    	scrollpane.getViewport().addHierarchyListener(new HierarchyListener() {
-    		@Override
-    		public void hierarchyChanged(HierarchyEvent aE) {
-				setScrollBarSizes();
-				removeListeners(scrollpane.getViewport());
-    			addListeners(scrollpane.getViewport());
-    		}
-    	});
+    	scrollpane.getViewport().addHierarchyListener(aE -> {
+			setScrollBarSizes();
+			removeListeners(scrollpane.getViewport());
+				addListeners(scrollpane.getViewport());
+			});
     	if (null != scrollpane.getHorizontalScrollBar()) {
 			scrollpane.getHorizontalScrollBar().addMouseListener(scrollBarMouseAdapter);
 			scrollpane.getHorizontalScrollBar().addMouseListener(mouseExitedAdapter);

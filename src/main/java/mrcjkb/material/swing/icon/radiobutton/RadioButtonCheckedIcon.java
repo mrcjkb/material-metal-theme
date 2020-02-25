@@ -67,9 +67,9 @@ public class RadioButtonCheckedIcon implements Icon {
      * @param g Graphics context.
      */
     private void paint(Graphics2D g) {
-        Shape shape = null;
+        GeneralPath shape;
         
-        java.util.LinkedList<AffineTransform> transformations = new java.util.LinkedList<AffineTransform>();
+        java.util.LinkedList<AffineTransform> transformations = new java.util.LinkedList<>();
         
 
         // 
@@ -88,48 +88,48 @@ public class RadioButtonCheckedIcon implements Icon {
 
         // _0_0_0_0
         shape = new GeneralPath();
-        ((GeneralPath) shape).moveTo(8.0, 15.0);
-        ((GeneralPath) shape).curveTo(4.14, 15.0, 1.0, 11.859, 1.0, 8.0);
-        ((GeneralPath) shape).curveTo(1.0, 4.14, 4.14, 1.0, 8.0, 1.0);
-        ((GeneralPath) shape).curveTo(11.859, 1.0, 15.0, 4.1400003, 15.0, 8.0);
-        ((GeneralPath) shape).curveTo(15.0, 11.859, 11.859, 15.0, 8.0, 15.0);
-        ((GeneralPath) shape).closePath();
+        shape.moveTo(8.0, 15.0);
+        shape.curveTo(4.14, 15.0, 1.0, 11.859, 1.0, 8.0);
+        shape.curveTo(1.0, 4.14, 4.14, 1.0, 8.0, 1.0);
+        shape.curveTo(11.859, 1.0, 15.0, 4.1400003, 15.0, 8.0);
+        shape.curveTo(15.0, 11.859, 11.859, 15.0, 8.0, 15.0);
+        shape.closePath();
 
         g.setPaint(backgroundColor);
         g.fill(shape);
 
         // _0_0_0_1
         shape = new GeneralPath();
-        ((GeneralPath) shape).moveTo(8.0, 2.0);
-        ((GeneralPath) shape).curveTo(4.688, 2.0, 2.0, 4.688, 2.0, 8.0);
-        ((GeneralPath) shape).curveTo(2.0, 11.312, 4.6879997, 14.0, 8.0, 14.0);
-        ((GeneralPath) shape).curveTo(11.312, 14.0, 14.0, 11.312, 14.0, 8.0);
-        ((GeneralPath) shape).curveTo(14.0, 4.688, 11.313, 2.0, 8.0, 2.0);
-        ((GeneralPath) shape).closePath();
+        shape.moveTo(8.0, 2.0);
+        shape.curveTo(4.688, 2.0, 2.0, 4.688, 2.0, 8.0);
+        shape.curveTo(2.0, 11.312, 4.6879997, 14.0, 8.0, 14.0);
+        shape.curveTo(11.312, 14.0, 14.0, 11.312, 14.0, 8.0);
+        shape.curveTo(14.0, 4.688, 11.313, 2.0, 8.0, 2.0);
+        shape.closePath();
 
         g.setPaint(outerCircleColor);
         g.fill(shape);
 
         // _0_0_0_2
         shape = new GeneralPath();
-        ((GeneralPath) shape).moveTo(8.0, 12.0);
-        ((GeneralPath) shape).curveTo(5.790861, 12.0, 4.0, 10.209139, 4.0, 8.0);
-        ((GeneralPath) shape).curveTo(4.0, 5.790861, 5.790861, 4.0, 8.0, 4.0);
-        ((GeneralPath) shape).curveTo(10.209139, 4.0, 12.0, 5.790861, 12.0, 8.0);
-        ((GeneralPath) shape).curveTo(12.0, 10.209139, 10.209139, 12.0, 8.0, 12.0);
-        ((GeneralPath) shape).closePath();
+        shape.moveTo(8.0, 12.0);
+        shape.curveTo(5.790861, 12.0, 4.0, 10.209139, 4.0, 8.0);
+        shape.curveTo(4.0, 5.790861, 5.790861, 4.0, 8.0, 4.0);
+        shape.curveTo(10.209139, 4.0, 12.0, 5.790861, 12.0, 8.0);
+        shape.curveTo(12.0, 10.209139, 10.209139, 12.0, 8.0, 12.0);
+        shape.closePath();
 
         g.fill(shape);
 
         // _0_0_0_3
         shape = new GeneralPath();
-        ((GeneralPath) shape).moveTo(9.948642, 7.9547844);
-        ((GeneralPath) shape).curveTo(9.965036, 8.679791, 9.587688, 9.356872, 8.962465, 9.724295);
-        ((GeneralPath) shape).curveTo(8.337241, 10.091719, 7.5621104, 10.091912, 6.936703, 9.724801);
-        ((GeneralPath) shape).curveTo(6.311296, 9.357691, 5.93361, 8.6807995, 5.9496417, 7.9557843);
-        ((GeneralPath) shape).curveTo(5.9736753, 6.8689036, 6.8615065, 6.0002704, 7.9486527, 5.9999986);
-        ((GeneralPath) shape).curveTo(9.035799, 5.999727, 9.924065, 6.867916, 9.948642, 7.9547844);
-        ((GeneralPath) shape).closePath();
+        shape.moveTo(9.948642, 7.9547844);
+        shape.curveTo(9.965036, 8.679791, 9.587688, 9.356872, 8.962465, 9.724295);
+        shape.curveTo(8.337241, 10.091719, 7.5621104, 10.091912, 6.936703, 9.724801);
+        shape.curveTo(6.311296, 9.357691, 5.93361, 8.6807995, 5.9496417, 7.9557843);
+        shape.curveTo(5.9736753, 6.8689036, 6.8615065, 6.0002704, 7.9486527, 5.9999986);
+        shape.curveTo(9.035799, 5.999727, 9.924065, 6.867916, 9.948642, 7.9547844);
+        shape.closePath();
 
         g.setPaint(innerCircleColor);
         g.fill(shape);
@@ -138,19 +138,19 @@ public class RadioButtonCheckedIcon implements Icon {
 
         // _0_0_0_4_0
         shape = new GeneralPath();
-        ((GeneralPath) shape).moveTo(8.0, 4.0);
-        ((GeneralPath) shape).curveTo(5.790861, 4.0, 4.0, 5.790861, 4.0, 8.0);
-        ((GeneralPath) shape).curveTo(4.0, 10.209139, 5.790861, 12.0, 8.0, 12.0);
-        ((GeneralPath) shape).curveTo(10.209139, 12.0, 12.0, 10.209139, 12.0, 8.0);
-        ((GeneralPath) shape).curveTo(12.0, 5.790861, 10.209139, 4.0, 8.0, 4.0);
-        ((GeneralPath) shape).closePath();
-        ((GeneralPath) shape).moveTo(8.0, 10.0);
-        ((GeneralPath) shape).curveTo(7.2749925, 10.016395, 6.597913, 9.639047, 6.2304893, 9.0138235);
-        ((GeneralPath) shape).curveTo(5.863066, 8.388599, 5.862872, 7.6134686, 6.229983, 6.9880614);
-        ((GeneralPath) shape).curveTo(6.5970936, 6.362654, 7.2739844, 5.984968, 7.999, 6.001);
-        ((GeneralPath) shape).curveTo(9.08588, 6.0250335, 9.954514, 6.9128647, 9.954786, 8.000011);
-        ((GeneralPath) shape).curveTo(9.955058, 9.087157, 9.086868, 9.975423, 8.0, 10.0);
-        ((GeneralPath) shape).closePath();
+        shape.moveTo(8.0, 4.0);
+        shape.curveTo(5.790861, 4.0, 4.0, 5.790861, 4.0, 8.0);
+        shape.curveTo(4.0, 10.209139, 5.790861, 12.0, 8.0, 12.0);
+        shape.curveTo(10.209139, 12.0, 12.0, 10.209139, 12.0, 8.0);
+        shape.curveTo(12.0, 5.790861, 10.209139, 4.0, 8.0, 4.0);
+        shape.closePath();
+        shape.moveTo(8.0, 10.0);
+        shape.curveTo(7.2749925, 10.016395, 6.597913, 9.639047, 6.2304893, 9.0138235);
+        shape.curveTo(5.863066, 8.388599, 5.862872, 7.6134686, 6.229983, 6.9880614);
+        shape.curveTo(6.5970936, 6.362654, 7.2739844, 5.984968, 7.999, 6.001);
+        shape.curveTo(9.08588, 6.0250335, 9.954514, 6.9128647, 9.954786, 8.000011);
+        shape.curveTo(9.955058, 9.087157, 9.086868, 9.975423, 8.0, 10.0);
+        shape.closePath();
 
         g.setPaint(backgroundColor);
         g.fill(shape);

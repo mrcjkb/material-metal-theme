@@ -12,8 +12,6 @@ import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicButtonListener;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
-import java.awt.event.HierarchyEvent;
-import java.awt.event.HierarchyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -45,17 +43,13 @@ public class MaterialButtonUI extends BasicButtonUI{
 		defaultForeground = UIManager.getColor("Button[Default].foreground");
 		button.setFocusable(false);
 		
-		button.addHierarchyListener(new HierarchyListener() {
-			
-			@Override
-			public void hierarchyChanged(HierarchyEvent arg0) {
-				defaultBackground = button.getBackground();
-				defaultForeground = button.getForeground();
-				JButton b = (JButton) button;
-				if (!b.isDefaultButton() && !(b.getIcon() instanceof DownArrowIcon || b instanceof BasicArrowButton)) {
-					MaterialManagerListener.removeAllMaterialMouseListener(button);
-					button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor("MaterialSwing.hoverColor")));
-				}
+		button.addHierarchyListener(arg0 -> {
+			defaultBackground = button.getBackground();
+			defaultForeground = button.getForeground();
+			JButton b = (JButton) button;
+			if (!b.isDefaultButton() && !(b.getIcon() instanceof DownArrowIcon || b instanceof BasicArrowButton)) {
+				MaterialManagerListener.removeAllMaterialMouseListener(button);
+				button.addMouseListener(MaterialUIMovement.getMovement(button, UIManager.getColor("MaterialSwing.hoverColor")));
 			}
 		});
 
@@ -218,7 +212,6 @@ public class MaterialButtonUI extends BasicButtonUI{
 		if (!b.isEnabled()) {
 			b.setBackground(disabledBackground);
 			b.setForeground(disabledForeground);
-			return;
 		}
 	}
 

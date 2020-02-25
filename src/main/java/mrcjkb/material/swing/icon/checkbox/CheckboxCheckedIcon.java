@@ -67,9 +67,9 @@ public class CheckboxCheckedIcon implements Icon {
      * @param g Graphics context.
      */
     private void paint(Graphics2D g) {
-        Shape shape = null;
+        GeneralPath shape;
         
-        java.util.LinkedList<AffineTransform> transformations = new java.util.LinkedList<AffineTransform>();
+        java.util.LinkedList<AffineTransform> transformations = new java.util.LinkedList<>();
         
 
         // 
@@ -84,64 +84,64 @@ public class CheckboxCheckedIcon implements Icon {
 
         // _0_0_0
         shape = new GeneralPath();
-        ((GeneralPath) shape).moveTo(20.864407, -5.423729);
-        ((GeneralPath) shape).lineTo(35.864407, -5.423729);
-        ((GeneralPath) shape).lineTo(35.864407, 9.576271);
-        ((GeneralPath) shape).lineTo(20.864407, 9.576271);
-        ((GeneralPath) shape).closePath();
+        shape.moveTo(20.864407, -5.423729);
+        shape.lineTo(35.864407, -5.423729);
+        shape.lineTo(35.864407, 9.576271);
+        shape.lineTo(20.864407, 9.576271);
+        shape.closePath();
 
         g.setPaint(backgroundColor);
         g.fill(shape);
 
         // _0_0_1
         shape = new GeneralPath();
-        ((GeneralPath) shape).moveTo(21.864407, -4.423729);
-        ((GeneralPath) shape).lineTo(21.864407, 8.576271);
-        ((GeneralPath) shape).lineTo(34.864407, 8.576271);
-        ((GeneralPath) shape).lineTo(34.864407, -4.423729);
-        ((GeneralPath) shape).closePath();
+        shape.moveTo(21.864407, -4.423729);
+        shape.lineTo(21.864407, 8.576271);
+        shape.lineTo(34.864407, 8.576271);
+        shape.lineTo(34.864407, -4.423729);
+        shape.closePath();
 
         g.setPaint(boxColor);
         g.fill(shape);
 
         // _0_0_2
         shape = new GeneralPath();
-        ((GeneralPath) shape).moveTo(22.864407, -3.4237287);
-        ((GeneralPath) shape).lineTo(33.864407, -3.4237287);
-        ((GeneralPath) shape).lineTo(33.864407, 7.576271);
-        ((GeneralPath) shape).lineTo(22.864407, 7.576271);
-        ((GeneralPath) shape).closePath();
+        shape.moveTo(22.864407, -3.4237287);
+        shape.lineTo(33.864407, -3.4237287);
+        shape.lineTo(33.864407, 7.576271);
+        shape.lineTo(22.864407, 7.576271);
+        shape.closePath();
 
         g.setPaint(boxColor);
         g.fill(shape);
 
         // _0_0_3
         shape = new GeneralPath();
-        ((GeneralPath) shape).moveTo(22.864407, 7.5762715);
-        ((GeneralPath) shape).lineTo(33.864407, 7.5762715);
-        ((GeneralPath) shape).lineTo(33.864407, -3.4237285);
-        ((GeneralPath) shape).lineTo(22.864407, -3.4237285);
-        ((GeneralPath) shape).closePath();
-        ((GeneralPath) shape).moveTo(25.117407, 2.4232717);
-        ((GeneralPath) shape).lineTo(26.864407, 4.1692715);
-        ((GeneralPath) shape).lineTo(31.411407, -0.37672853);
-        ((GeneralPath) shape).lineTo(32.11841, 0.33027148);
-        ((GeneralPath) shape).lineTo(26.864408, 5.583271);
-        ((GeneralPath) shape).lineTo(24.410408, 3.130271);
-        ((GeneralPath) shape).closePath();
+        shape.moveTo(22.864407, 7.5762715);
+        shape.lineTo(33.864407, 7.5762715);
+        shape.lineTo(33.864407, -3.4237285);
+        shape.lineTo(22.864407, -3.4237285);
+        shape.closePath();
+        shape.moveTo(25.117407, 2.4232717);
+        shape.lineTo(26.864407, 4.1692715);
+        shape.lineTo(31.411407, -0.37672853);
+        shape.lineTo(32.11841, 0.33027148);
+        shape.lineTo(26.864408, 5.583271);
+        shape.lineTo(24.410408, 3.130271);
+        shape.closePath();
 
         g.setPaint(backgroundColor);
         g.fill(shape);
 
         // _0_0_4
         shape = new GeneralPath();
-        ((GeneralPath) shape).moveTo(26.864407, 5.583271);
-        ((GeneralPath) shape).lineTo(24.410406, 3.130271);
-        ((GeneralPath) shape).lineTo(25.117407, 2.423271);
-        ((GeneralPath) shape).lineTo(26.864407, 4.169271);
-        ((GeneralPath) shape).lineTo(31.411407, -0.376729);
-        ((GeneralPath) shape).lineTo(32.11841, 0.330271);
-        ((GeneralPath) shape).closePath();
+        shape.moveTo(26.864407, 5.583271);
+        shape.lineTo(24.410406, 3.130271);
+        shape.lineTo(25.117407, 2.423271);
+        shape.lineTo(26.864407, 4.169271);
+        shape.lineTo(31.411407, -0.376729);
+        shape.lineTo(32.11841, 0.330271);
+        shape.closePath();
 
         g.setPaint(checkColor);
         g.fill(shape);

@@ -78,7 +78,7 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 		paint(g, c);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	@Override
 	protected ListCellRenderer createRenderer() {
 		return new MaterialComboBoxRenderer();

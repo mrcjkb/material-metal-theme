@@ -63,9 +63,9 @@ public class RadioButtonUncheckedIcon implements javax.swing.Icon {
      * @param g Graphics context.
      */
     private void paint(Graphics2D g) {
-        Shape shape = null;
+        GeneralPath shape;
         
-        java.util.LinkedList<AffineTransform> transformations = new java.util.LinkedList<AffineTransform>();
+        java.util.LinkedList<AffineTransform> transformations = new java.util.LinkedList<>();
         
 
         // 
@@ -78,28 +78,28 @@ public class RadioButtonUncheckedIcon implements javax.swing.Icon {
 
         // _0_0_0
         shape = new GeneralPath();
-        ((GeneralPath) shape).moveTo(8.0, 15.0);
-        ((GeneralPath) shape).curveTo(4.14, 15.0, 1.0, 11.859, 1.0, 8.0);
-        ((GeneralPath) shape).curveTo(1.0, 4.14, 4.14, 1.0, 8.0, 1.0);
-        ((GeneralPath) shape).curveTo(11.859, 1.0, 15.0, 4.1400003, 15.0, 8.0);
-        ((GeneralPath) shape).curveTo(15.0, 11.859, 11.859, 15.0, 8.0, 15.0);
-        ((GeneralPath) shape).closePath();
+        shape.moveTo(8.0, 15.0);
+        shape.curveTo(4.14, 15.0, 1.0, 11.859, 1.0, 8.0);
+        shape.curveTo(1.0, 4.14, 4.14, 1.0, 8.0, 1.0);
+        shape.curveTo(11.859, 1.0, 15.0, 4.1400003, 15.0, 8.0);
+        shape.curveTo(15.0, 11.859, 11.859, 15.0, 8.0, 15.0);
+        shape.closePath();
 
         g.setPaint(backgroundColor);
         g.fill(shape);
 
         // _0_0_1
         shape = new GeneralPath();
-        ((GeneralPath) shape).moveTo(8.0, 2.0);
-        ((GeneralPath) shape).curveTo(4.688, 2.0, 2.0, 4.688, 2.0, 8.0);
-        ((GeneralPath) shape).curveTo(2.0, 11.312, 4.6879997, 14.0, 8.0, 14.0);
-        ((GeneralPath) shape).curveTo(11.312, 14.0, 14.0, 11.312, 14.0, 8.0);
-        ((GeneralPath) shape).curveTo(14.0, 4.688, 11.313, 2.0, 8.0, 2.0);
-        ((GeneralPath) shape).closePath();
-        ((GeneralPath) shape).moveTo(8.0, 12.0);
-        ((GeneralPath) shape).curveTo(2.666669, 12.0, 2.666669, 4.0, 8.0, 4.0);
-        ((GeneralPath) shape).curveTo(13.333331, 4.0, 13.333331, 12.0, 8.0, 12.0);
-        ((GeneralPath) shape).closePath();
+        shape.moveTo(8.0, 2.0);
+        shape.curveTo(4.688, 2.0, 2.0, 4.688, 2.0, 8.0);
+        shape.curveTo(2.0, 11.312, 4.6879997, 14.0, 8.0, 14.0);
+        shape.curveTo(11.312, 14.0, 14.0, 11.312, 14.0, 8.0);
+        shape.curveTo(14.0, 4.688, 11.313, 2.0, 8.0, 2.0);
+        shape.closePath();
+        shape.moveTo(8.0, 12.0);
+        shape.curveTo(2.666669, 12.0, 2.666669, 4.0, 8.0, 4.0);
+        shape.curveTo(13.333331, 4.0, 13.333331, 12.0, 8.0, 12.0);
+        shape.closePath();
 
         g.setPaint(foregroundColor);
         g.fill(shape);
@@ -108,10 +108,10 @@ public class RadioButtonUncheckedIcon implements javax.swing.Icon {
 
         // _0_0_2_0
         shape = new GeneralPath();
-        ((GeneralPath) shape).moveTo(8.0, 4.0);
-        ((GeneralPath) shape).curveTo(2.666669, 4.0, 2.666669, 12.0, 8.0, 12.0);
-        ((GeneralPath) shape).curveTo(13.333331, 12.0, 13.333331, 4.0, 8.0, 4.0);
-        ((GeneralPath) shape).closePath();
+        shape.moveTo(8.0, 4.0);
+        shape.curveTo(2.666669, 4.0, 2.666669, 12.0, 8.0, 12.0);
+        shape.curveTo(13.333331, 12.0, 13.333331, 4.0, 8.0, 4.0);
+        shape.closePath();
 
         g.setPaint(backgroundColor);
         g.fill(shape);

@@ -11,6 +11,7 @@ import java.awt.*;
 public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 
 	private static final int LINE_HEIGHT = 5;
+	private static final int LINE_WIDTH = 5;
 
 	protected JTabbedPane component;
 	protected ColorUIResource selectedForeground;
@@ -84,9 +85,9 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 			yp = new int[]{(y + LINE_HEIGHT), y, y, y, y, y, y + LINE_HEIGHT, y + LINE_HEIGHT};
 			shape = new Polygon(xp, yp, xp.length);
 		} else if (tabPlacement == LEFT) {
-			shapeRect = new Rectangle(x + LINE_HEIGHT - 2, y + (LINE_HEIGHT), LINE_HEIGHT, w / (tabPane.getTabCount()));
+			shapeRect = new Rectangle(x + LINE_HEIGHT - 2, y + (LINE_HEIGHT), LINE_WIDTH, w / (tabPane.getTabCount()));
 		} else {
-			shapeRect = new Rectangle(x + w - LINE_HEIGHT, y + (LINE_HEIGHT), LINE_HEIGHT, w / (tabPane.getTabCount()));
+			shapeRect = new Rectangle(x + w - LINE_HEIGHT, y + (LINE_HEIGHT), LINE_WIDTH, w / (tabPane.getTabCount()));
 		}
 
 		if (isSelected) {
@@ -95,7 +96,7 @@ public class MaterialTabbedPaneUI extends BasicTabbedPaneUI {
 			tabPane.setForegroundAt(tabIndex, selectedForeground);
 			if (shape != null) {
 				g2D.fill(shape);
-			} else if (shapeRect != null) {
+			} else {
 				g2D.fill(shapeRect);
 			}
 		} else {

@@ -74,9 +74,9 @@ public class DownArrowIcon implements Icon {
      * @param g Graphics context.
      */
     private void paint(Graphics2D g) {
-Shape shape = null;
+GeneralPath shape;
         
-        java.util.LinkedList<AffineTransform> transformations = new java.util.LinkedList<AffineTransform>();
+        java.util.LinkedList<AffineTransform> transformations = new java.util.LinkedList<>();
         
 
         // 
@@ -91,10 +91,10 @@ Shape shape = null;
 
         // _0_0_0
         shape = new GeneralPath();
-        ((GeneralPath) shape).moveTo(-18.894884, 5.399658);
-        ((GeneralPath) shape).lineTo(-6.1173086, 5.2566986);
-        ((GeneralPath) shape).lineTo(-12.354725, 11.715573);
-        ((GeneralPath) shape).closePath();
+        shape.moveTo(-18.894884, 5.399658);
+        shape.lineTo(-6.1173086, 5.2566986);
+        shape.lineTo(-12.354725, 11.715573);
+        shape.closePath();
 
         g.setPaint(foreground);
         g.fill(shape);
@@ -105,10 +105,10 @@ Shape shape = null;
 
         // _0_0_1_0
         shape = new GeneralPath();
-        ((GeneralPath) shape).moveTo(11.0, 10.0);
-        ((GeneralPath) shape).lineTo(5.344, 10.0);
-        ((GeneralPath) shape).lineTo(11.0, 4.414);
-        ((GeneralPath) shape).closePath();
+        shape.moveTo(11.0, 10.0);
+        shape.lineTo(5.344, 10.0);
+        shape.lineTo(11.0, 4.414);
+        shape.closePath();
 
         g.setPaint(foreground);
         g.fill(shape);
