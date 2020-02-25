@@ -63,6 +63,7 @@ public class DarkMaterialSwingTheme extends AbstractMaterialSwingTheme {
 			this.hoverColor = new ColorUIResource(r, g, b);
 		}
 		this.autohideScrollBars = builder.autohideScrollBars;
+		this.applyIconSet = builder.applyIconSet;
 		applyUIManagerConfig();
 	}
 
@@ -218,6 +219,7 @@ public class DarkMaterialSwingTheme extends AbstractMaterialSwingTheme {
 		private ColorUIResource accent2;
 		private ColorUIResource hoverColor;
 		private boolean autohideScrollBars;
+		private boolean applyIconSet;
 		
 		private Builder() {
 		}
@@ -269,6 +271,11 @@ public class DarkMaterialSwingTheme extends AbstractMaterialSwingTheme {
 		
 		public Builder withAutohideScrollBars(boolean autohideScrollBars) {
 			this.autohideScrollBars = autohideScrollBars;
+			return this;
+		}
+
+		public Builder applyIconSet(boolean applyIconSet) {
+			this.applyIconSet = applyIconSet;
 			return this;
 		}
 

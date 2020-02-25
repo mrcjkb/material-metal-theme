@@ -1,6 +1,7 @@
 package mrcjkb.material.swing.theme;
 
 
+import mrcjkb.material.swing.icon.filesystem.*;
 import mrcjkb.material.swing.ui.*;
 
 import javax.swing.*;
@@ -31,6 +32,7 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 	protected ColorUIResource accent2;
 	protected ColorUIResource hoverColor;
 	protected boolean autohideScrollBars; // Experimental
+	protected boolean applyIconSet;
 	
 	
 	@Override
@@ -216,16 +218,16 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 		UIManager.put("TreeUI", MaterialTreeUI.class.getName());
 		UIManager.put("Tree.selectionForeground", getBlack());
 
-		/*
-		UIManager.put("FileView.directoryIcon", new FolderClosedIcon());
-		UIManager.put("Tree.openIcon", new FolderOpenIcon());
-		UIManager.put("Tree.closedIcon", new FolderClosedIcon());
-		UIManager.put("Tree.leafIcon", new FileIcon());
-		UIManager.put("FileView.fileIcon", new FileIcon());
-		UIManager.put("FileChooser.upFolderIcon", new UpFolderIcon());
-		UIManager.put("FileChooser.homeFolderIcon", new HomeIcon());
-		UIManager.put("FileChooser.newFolderIcon", new NewFolderIcon());
-		 */
+		if (applyIconSet) {
+			UIManager.put("FileView.directoryIcon", new FolderClosedIcon());
+			UIManager.put("Tree.openIcon", new FolderOpenIcon());
+			UIManager.put("Tree.closedIcon", new FolderClosedIcon());
+			UIManager.put("Tree.leafIcon", new FileIcon());
+			UIManager.put("FileView.fileIcon", new FileIcon());
+			UIManager.put("FileChooser.upFolderIcon", new UpFolderIcon());
+			UIManager.put("FileChooser.homeFolderIcon", new HomeIcon());
+			UIManager.put("FileChooser.newFolderIcon", new NewFolderIcon());
+		}
 	}
 	
 	protected void setInactiveColors(ColorUIResource inactiveColor) {
