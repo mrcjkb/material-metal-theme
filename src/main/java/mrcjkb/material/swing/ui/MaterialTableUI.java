@@ -55,8 +55,7 @@ public class MaterialTableUI extends BasicTableUI {
 	}
 
 	/**
-	 * This method setting a MaterialCellRender at the particular class
-	 * With this class not working correctly the color alternate in the Jtable
+	 * Sets a MaterialCellRender as default for the respective classes.
 	 */
 	protected void setDefaultCellRenderWithType(JTable table) {
 		if(table == null){
@@ -73,11 +72,6 @@ public class MaterialTableUI extends BasicTableUI {
 	
 	private static JTextField initTextField() {
 		return new JTextField();
-    }
-	
-	private static JTextField initTextField(JTextField textField) {
-        textField = new JTextField();
-        return textField;
     }
 	
 	public static class MaterialTableCellEditor extends DefaultCellEditor {
@@ -97,27 +91,28 @@ public class MaterialTableUI extends BasicTableUI {
 	    }
 
 	    public MaterialTableCellEditor(JTextField textField) {
-	        super(initTextField(textField));
+	        super(textField);
 	    }
 
 	    @Override
 	    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+	    		Component component = super.getTableCellEditorComponent(table, value, isSelected, row, column);
 	        Color background = UIManager.getColor("Table.background");
-	        editorComponent.setBackground(background);
-	        return editorComponent;
+					component.setBackground(background);
+	        return component;
 	    }
 	}
 	
-	public class MaterialTableCellRenderer extends DefaultTableCellRenderer {
+	public static class MaterialTableCellRenderer extends DefaultTableCellRenderer {
 
 		private static final long serialVersionUID = 1L;
 
 		@Override
-		public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-			JComponent component = (JComponent) super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+			JComponent component = (JComponent) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 			// hides yellow selection highlight
-			this.setHorizontalAlignment (SwingConstants.CENTER);
-			this.setVerticalAlignment (SwingConstants.CENTER);
+			this.setHorizontalAlignment(SwingConstants.CENTER);
+			this.setVerticalAlignment(SwingConstants.CENTER);
 
 			if(value instanceof Boolean){
 				TableCellRenderer renderer = new MaterialTableCellRendererCheckBox();
@@ -135,7 +130,7 @@ public class MaterialTableUI extends BasicTableUI {
 		  // in the cell did print the path of the image
 
 		protected void setDefaultCellRenderWithAllType(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column, Color color) {
-			if(table == null){
+			if(table == null) {
 				throw new IllegalArgumentException("Table is null");
 			}
 
