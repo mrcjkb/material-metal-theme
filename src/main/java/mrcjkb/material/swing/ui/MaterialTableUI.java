@@ -22,6 +22,7 @@ public class MaterialTableUI extends BasicTableUI {
 		super.installUI(c);
 
 		table.getTableHeader().setResizingAllowed(true);
+		table.setSelectionBackground(UIManager.getColor("Table.selectionBackground"));
 		int rowHeight = UIManager.getInt("Table.rowHeight");
 		if (rowHeight > 0) {
 			table.setRowHeight(rowHeight);
