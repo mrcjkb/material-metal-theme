@@ -4,11 +4,9 @@ package mrcjkb.material.swing.theme;
 import mrcjkb.material.swing.icon.filesystem.*;
 import mrcjkb.material.swing.ui.*;
 
-import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.metal.DefaultMetalTheme;
-import java.awt.*;
 
 /**
  * Abstract class for the material Metal Theme
@@ -164,6 +162,7 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 		UIManager.put("TableUI", MaterialTableUI.class.getName());
 		UIManager.put("TableHeader.cellBorder", BorderFactory.createEmptyBorder());
 		UIManager.put("Table.selectionForeground", Color.WHITE);
+		UIManager.put("Table.selectionBackground", getAccent1());
 		UIManager.put("Table.dropCellBackground", Color.LIGHT_GRAY);
 		UIManager.put("TableHeaderUI", MaterialTableHeaderUI.class.getName());
 

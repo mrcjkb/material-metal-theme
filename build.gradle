@@ -1,5 +1,5 @@
 buildscript {
-    version = "0.4.4"
+    version = "0.4.5"
     description = "Material design-inspired theme for Swing's metal look and feel."
     repositories {
         mavenCentral()
@@ -109,8 +109,7 @@ publishing {
     repositories {
         maven {
             url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
-            credentials {
-                username "${sonatypeUsername}"
+            credentials {username "${sonatypeUsername}"
                 password "${sonatypePassword}"
             }
         }
