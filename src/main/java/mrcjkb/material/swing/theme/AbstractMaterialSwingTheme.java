@@ -4,9 +4,11 @@ package mrcjkb.material.swing.theme;
 import mrcjkb.material.swing.icon.filesystem.*;
 import mrcjkb.material.swing.ui.*;
 
+import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.metal.DefaultMetalTheme;
+import java.awt.*;
 
 /**
  * Abstract class for the material Metal Theme
@@ -218,6 +220,8 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 		UIManager.put("SpinnerUI", MaterialSpinnerUI.class.getName());
 		UIManager.put("TreeUI", MaterialTreeUI.class.getName());
 		UIManager.put("Tree.selectionForeground", getBlack());
+
+		UIManager.put("ToolBarUI", MaterialToolBarUI.class.getName());
 
 		if (applyIconSet) {
 			UIManager.put("FileView.directoryIcon", new FolderClosedIcon());
