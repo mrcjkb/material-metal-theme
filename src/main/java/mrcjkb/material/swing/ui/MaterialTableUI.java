@@ -3,11 +3,15 @@ package mrcjkb.material.swing.ui;
 import mrcjkb.material.swing.materialui.util.MaterialDrawingUtils;
 
 import javax.swing.*;
+import javax.swing.event.CellEditorListener;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTableUI;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
+import java.io.Serializable;
+import java.util.EventObject;
 
 public class MaterialTableUI extends BasicTableUI {
 
@@ -32,7 +36,12 @@ public class MaterialTableUI extends BasicTableUI {
 
 		this.setDefaultCellRenderWithType(table);
 
-		table.setDefaultEditor(Object.class, new MaterialTableCellEditor());
+		table.setDefaultEditor(Object.class, new MaterialTableCellEditorDecorator(table.getDefaultEditor(Object.class)));
+		table.setDefaultEditor(String.class, new MaterialTableCellEditorDecorator(table.getDefaultEditor(String.class)));
+		table.setDefaultEditor(Integer.class, new MaterialTableCellEditorDecorator(table.getDefaultEditor(Integer.class)));
+		table.setDefaultEditor(Double.class, new MaterialTableCellEditorDecorator(table.getDefaultEditor(Double.class)));
+		table.setDefaultEditor(Float.class, new MaterialTableCellEditorDecorator(table.getDefaultEditor(Float.class)));
+		table.setDefaultEditor(Boolean.class, new MaterialTableCellEditorDecorator(table.getDefaultEditor(Boolean.class)));
 	}
 
 	@Override
@@ -63,57 +72,86 @@ public class MaterialTableUI extends BasicTableUI {
 			throw new IllegalArgumentException("Table is null");
 		}
 
-		table.setDefaultRenderer(Object.class, new MaterialTableCellRenderer());
-		table.setDefaultRenderer(String.class, new MaterialTableCellRenderer());
-		table.setDefaultRenderer(Integer.class, new MaterialTableCellRenderer());
-		table.setDefaultRenderer(Double.class, new MaterialTableCellRenderer());
-		table.setDefaultRenderer(Float.class, new MaterialTableCellRenderer());
-		table.setDefaultRenderer(Boolean.class, new MaterialTableCellRenderer());
+		table.setDefaultRenderer(Object.class, new MaterialTableCellRendererDecorator(table.getDefaultRenderer(Object.class)));
+		table.setDefaultRenderer(String.class, new MaterialTableCellRendererDecorator(table.getDefaultRenderer(String.class)));
+		table.setDefaultRenderer(Integer.class, new MaterialTableCellRendererDecorator(table.getDefaultRenderer(Integer.class)));
+		table.setDefaultRenderer(Double.class, new MaterialTableCellRendererDecorator(table.getDefaultRenderer(Double.class)));
+		table.setDefaultRenderer(Float.class, new MaterialTableCellRendererDecorator(table.getDefaultRenderer(Float.class)));
+		table.setDefaultRenderer(Boolean.class, new MaterialTableCellRendererDecorator(table.getDefaultRenderer(Boolean.class)));
 	}
-	
-	private static JTextField initTextField() {
-		return new JTextField();
-    }
-	
-	public static class MaterialTableCellEditor extends DefaultCellEditor {
+
+	public static class MaterialTableCellEditorDecorator implements TableCellEditor, Serializable {
 
 		private static final long serialVersionUID = 1L;
 
-	    public MaterialTableCellEditor() {
-	        super(initTextField());
-	    }
+		private final TableCellEditor tableCellEditor;
 
-	    public MaterialTableCellEditor(JComboBox<?> comboBox) {
-	        super(comboBox);
-	    }
-
-	    public MaterialTableCellEditor(JCheckBox checkBox) {
-	        super(checkBox);
-	    }
-
-	    public MaterialTableCellEditor(JTextField textField) {
-	        super(textField);
+	    public MaterialTableCellEditorDecorator(TableCellEditor tableCellEditor) {
+	        this.tableCellEditor = tableCellEditor;
 	    }
 
 	    @Override
 	    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-	    		Component component = super.getTableCellEditorComponent(table, value, isSelected, row, column);
+	    		Component component = tableCellEditor.getTableCellEditorComponent(table, value, isSelected, row, column);
 	        Color background = UIManager.getColor("Table.background");
 					component.setBackground(background);
 	        return component;
 	    }
+
+		@Override
+		public Object getCellEditorValue() {
+			return tableCellEditor.getCellEditorValue();
+		}
+
+		@Override
+		public boolean isCellEditable(EventObject eventObject) {
+			return tableCellEditor.isCellEditable(eventObject);
+		}
+
+		@Override
+		public boolean shouldSelectCell(EventObject eventObject) {
+			return tableCellEditor.shouldSelectCell(eventObject);
+		}
+
+		@Override
+		public boolean stopCellEditing() {
+			return tableCellEditor.stopCellEditing();
+		}
+
+		@Override
+		public void cancelCellEditing() {
+			tableCellEditor.cancelCellEditing();
+		}
+
+		@Override
+		public void addCellEditorListener(CellEditorListener cellEditorListener) {
+			tableCellEditor.addCellEditorListener(cellEditorListener);
+		}
+
+		@Override
+		public void removeCellEditorListener(CellEditorListener cellEditorListener) {
+			tableCellEditor.removeCellEditorListener(cellEditorListener);
+		}
 	}
 	
-	public static class MaterialTableCellRenderer extends DefaultTableCellRenderer {
+	public static class MaterialTableCellRendererDecorator implements TableCellRenderer, Serializable {
 
 		private static final long serialVersionUID = 1L;
 
+		private final TableCellRenderer tableCellRenderer;
+
+		public MaterialTableCellRendererDecorator(TableCellRenderer tableCellRenderer) {
+			this.tableCellRenderer = tableCellRenderer;
+		}
+
 		@Override
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-			JComponent component = (JComponent) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+			JComponent component = (JComponent) tableCellRenderer.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 			// hides yellow selection highlight
-			this.setHorizontalAlignment(SwingConstants.CENTER);
-			this.setVerticalAlignment(SwingConstants.CENTER);
+			if (tableCellRenderer instanceof DefaultTableCellRenderer) {
+				((DefaultTableCellRenderer) tableCellRenderer).setHorizontalAlignment(SwingConstants.CENTER);
+				((DefaultTableCellRenderer) tableCellRenderer).setVerticalAlignment(SwingConstants.CENTER);
+			}
 
 			if(value instanceof Boolean){
 				TableCellRenderer renderer = new MaterialTableCellRendererCheckBox();

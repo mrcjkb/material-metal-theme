@@ -7,7 +7,9 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTableHeaderUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
+import java.io.Serializable;
 
 public class MaterialTableHeaderUI extends BasicTableHeaderUI {
 
@@ -20,7 +22,7 @@ public class MaterialTableHeaderUI extends BasicTableHeaderUI {
 		super.installUI(c);
 
 		JTableHeader header = (JTableHeader) c;
-		header.setDefaultRenderer(new MaterialTableHeaderCellRenderer());
+		header.setDefaultRenderer(new MaterialTableHeaderCellRendererDecorator(header.getDefaultRenderer()));
 	}
 
 	@Override
@@ -32,6 +34,7 @@ public class MaterialTableHeaderUI extends BasicTableHeaderUI {
 		header.setForeground(null);
 		header.setFont(null);
 		header.setBorder(null);
+		header.setOpaque(false);
 
 		super.uninstallUI(c);
 	}
@@ -41,16 +44,22 @@ public class MaterialTableHeaderUI extends BasicTableHeaderUI {
 		super.paint(MaterialDrawingUtils.getAliasedGraphics(g), c);
 	}
 	
-	public static class MaterialTableHeaderCellRenderer extends DefaultTableCellRenderer {
+	public static class MaterialTableHeaderCellRendererDecorator implements TableCellRenderer, Serializable {
+
+		private final TableCellRenderer tableCellRenderer;
 
 		private static final long serialVersionUID = 1L;
 
+		public MaterialTableHeaderCellRendererDecorator(TableCellRenderer tableCellRenderer) {
+			this.tableCellRenderer = tableCellRenderer;
+		}
+
 		@Override
 		public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-			JComponent component = (JComponent) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-
-			this.setVerticalAlignment(SwingConstants.CENTER);
-
+			JComponent component = (JComponent) tableCellRenderer.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+			if (tableCellRenderer instanceof DefaultTableCellRenderer) {
+				((DefaultTableCellRenderer) tableCellRenderer).setVerticalAlignment(SwingConstants.CENTER);
+			}
 			return component;
 		}
 	}
