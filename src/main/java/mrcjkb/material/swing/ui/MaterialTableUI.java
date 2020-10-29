@@ -1,14 +1,14 @@
 package mrcjkb.material.swing.ui;
 
 import mrcjkb.material.swing.materialui.util.MaterialDrawingUtils;
-import mrcjkb.material.swing.ui.renderer.api.IMaterialTableCellRendererDecoratorFactory;
-import mrcjkb.material.swing.ui.renderer.factory.MaterialTableCellRendererDecoratorFactory;
 
 import javax.swing.*;
 import javax.swing.event.CellEditorListener;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTableUI;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.io.Serializable;
 import java.util.EventObject;
@@ -16,8 +16,6 @@ import java.util.EventObject;
 public class MaterialTableUI extends BasicTableUI {
 
 	public static final String UI_KEY = "TableUI";
-
-	private final IMaterialTableCellRendererDecoratorFactory tableCellRendererDecoratorFactory = new MaterialTableCellRendererDecoratorFactory();
 
 	public static ComponentUI createUI(JComponent c) {
 		return new MaterialTableUI();
@@ -74,12 +72,12 @@ public class MaterialTableUI extends BasicTableUI {
 			throw new IllegalArgumentException("Table is null");
 		}
 
-		table.setDefaultRenderer(Object.class, tableCellRendererDecoratorFactory.createMaterialTableCellRendererDecorator(table.getDefaultRenderer(Object.class)));
-		table.setDefaultRenderer(String.class, tableCellRendererDecoratorFactory.createMaterialTableCellRendererDecorator(table.getDefaultRenderer(String.class)));
-		table.setDefaultRenderer(Integer.class, tableCellRendererDecoratorFactory.createMaterialTableCellRendererDecorator(table.getDefaultRenderer(Integer.class)));
-		table.setDefaultRenderer(Double.class, tableCellRendererDecoratorFactory.createMaterialTableCellRendererDecorator(table.getDefaultRenderer(Double.class)));
-		table.setDefaultRenderer(Float.class, tableCellRendererDecoratorFactory.createMaterialTableCellRendererDecorator(table.getDefaultRenderer(Float.class)));
-		table.setDefaultRenderer(Boolean.class, tableCellRendererDecoratorFactory.createMaterialTableCellRendererDecorator(table.getDefaultRenderer(Boolean.class)));
+		table.setDefaultRenderer(Object.class, new MaterialTableCellRendererDecorator(table.getDefaultRenderer(Object.class)));
+		table.setDefaultRenderer(String.class, new MaterialTableCellRendererDecorator(table.getDefaultRenderer(String.class)));
+		table.setDefaultRenderer(Integer.class, new MaterialTableCellRendererDecorator(table.getDefaultRenderer(Integer.class)));
+		table.setDefaultRenderer(Double.class, new MaterialTableCellRendererDecorator(table.getDefaultRenderer(Double.class)));
+		table.setDefaultRenderer(Float.class, new MaterialTableCellRendererDecorator(table.getDefaultRenderer(Float.class)));
+		table.setDefaultRenderer(Boolean.class, new MaterialTableCellRendererDecorator(table.getDefaultRenderer(Boolean.class)));
 	}
 
 	public static class MaterialTableCellEditorDecorator implements TableCellEditor, Serializable {
@@ -136,4 +134,82 @@ public class MaterialTableUI extends BasicTableUI {
 		}
 	}
 	
+	public static class MaterialTableCellRendererDecorator implements TableCellRenderer, Serializable {
+
+		private static final long serialVersionUID = 1L;
+
+		private final TableCellRenderer tableCellRenderer;
+
+		public MaterialTableCellRendererDecorator(TableCellRenderer tableCellRenderer) {
+			this.tableCellRenderer = tableCellRenderer;
+		}
+
+		@Override
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+			JComponent component = (JComponent) tableCellRenderer.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+			// hides yellow selection highlight
+			if (tableCellRenderer instanceof DefaultTableCellRenderer) {
+				((DefaultTableCellRenderer) tableCellRenderer).setHorizontalAlignment(SwingConstants.CENTER);
+				((DefaultTableCellRenderer) tableCellRenderer).setVerticalAlignment(SwingConstants.CENTER);
+			}
+
+			if(value instanceof Boolean){
+				TableCellRenderer renderer = new MaterialTableCellRendererCheckBox();
+				return renderer.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+			}
+			Color background = UIManager.getColor("Table.background");
+			component.setBackground(background);
+			setDefaultCellRenderWithAllType(table, value, isSelected, hasFocus, row, column, background);
+			return component;
+		}
+
+		  // This method setting a MaterialCellRender at the particular class
+		  // With this class not working correctly the color alternate in the Jtable
+		  // in particular the IconImage without this code the cell is painted not correctly or
+		  // in the cell did print the path of the image
+
+		protected void setDefaultCellRenderWithAllType(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column, Color color) {
+			if(table == null) {
+				throw new IllegalArgumentException("Table is null");
+			}
+
+			Component component = table.getDefaultRenderer(ImageIcon.class).getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+			component.setBackground(color);
+		}
+	}
+	
+	static class MaterialTableCellRendererCheckBox extends JCheckBox implements TableCellRenderer {
+
+		private static final long serialVersionUID = 1L;
+
+	    public MaterialTableCellRendererCheckBox() {
+	        setLayout(new GridBagLayout());
+	        setMargin(new Insets(0, 0, 0, 0));
+	        setHorizontalAlignment(JLabel.CENTER);
+	    }
+
+	    @Override
+	    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+	        if (value instanceof Boolean) {
+	            setSelected((Boolean) value);
+	        }
+	        boolean alternativeRow = UIManager.getBoolean("Table.alternateRowColor");
+	        Color alternativeRowColor = UIManager.getColor("Table.alternateRowBackground");
+	        Color normalColor = UIManager.getColor("Table.background");
+	        if(alternativeRow){
+	            if(!isSelected){
+	                if(row%2 == 1) {
+	                    this.setBackground(alternativeRowColor);
+	                }else{
+	                    this.setBackground(normalColor);
+	                }
+	                this.setForeground(table.getForeground());
+	            }else{
+	                this.setForeground(table.getSelectionForeground());
+	                this.setBackground(table.getSelectionBackground());
+	            }
+	        }
+	        return this;
+	    }
+	}
 }
