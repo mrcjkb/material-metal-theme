@@ -104,6 +104,7 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 		UIManager.put("ComboBox.disabledForeground", Color.LIGHT_GRAY);
 		UIManager.put("ComboBox.selectionForeground", getBlack());
 		UIManager.put("ComboBox.selectionBackground", getAccent1());
+		UIManager.put("ComboBox.arc", 2);
 		UIManager.put("control", isLightTheme() ? Color.LIGHT_GRAY : Color.DARK_GRAY);
 		UIManager.put("controlShadow", new ColorUIResource(new Color(0, 0, 0, 0)));
 		UIManager.put("controlDkShadow", new ColorUIResource(new Color(0, 0, 0, 0)));
