@@ -47,7 +47,7 @@ public class MaterialButtonUI extends BasicButtonUI{
 		disabledForeground = UIManager.getColor("Button.disabledForeground");
 		defaultBackground = UIManager.getColor("Button[Default].background");
 		defaultForeground = UIManager.getColor("Button[Default].foreground");
-		button.setFocusable(false);
+		button.setFocusable(true);
 
 		button.addHierarchyListener(arg0 -> {
 			defaultBackground = button.getBackground();
@@ -129,11 +129,6 @@ public class MaterialButtonUI extends BasicButtonUI{
 	}
 
 	@Override
-	protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
-		paintFocusRing(g, (JButton) b);
-	}
-
-	@Override
 	public void update(Graphics g, JComponent c) {
 		super.update(g, c);
 	}
@@ -153,17 +148,6 @@ public class MaterialButtonUI extends BasicButtonUI{
 	protected void uninstallListeners(AbstractButton b) {
 		b.removePropertyChangeListener(enableButton);
 		super.uninstallListeners(b);
-	}
-
-	protected void paintFocusRing(Graphics g, JButton b) {
-		Stroke dashed = new BasicStroke(1, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_MITER, 10.0f, new float[]{0f, 3f}, 10.0f);
-		Graphics2D g2 = (Graphics2D) g.create();
-		g2.setStroke(dashed);
-		if (isDefaultButton) {
-			g2.setColor(UIManager.getColor("MaterialSwing.accent1Color"));
-			g2.drawRoundRect(5, 5, b.getWidth() - 10, b.getHeight() - 10, arch, arch);
-		}
-		g2.dispose();
 	}
 
 	protected void paintShadow(Graphics g, JComponent c) {

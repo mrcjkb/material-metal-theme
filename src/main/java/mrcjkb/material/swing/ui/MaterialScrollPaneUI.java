@@ -1,5 +1,7 @@
 package mrcjkb.material.swing.ui;
 
+import mrcjkb.material.swing.materialui.util.ComponentUtil;
+
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicScrollPaneUI;
@@ -13,7 +15,7 @@ import java.util.logging.Logger;
 
 public class MaterialScrollPaneUI extends BasicScrollPaneUI {
 
-	private static Logger sLog = Logger.getLogger(MaterialScrollPaneUI.class.getName());
+	private static final Logger sLog = Logger.getLogger(MaterialScrollPaneUI.class.getName());
 			
 	private static final int SHOW_THRESHOLD = 30;
 	
@@ -169,16 +171,7 @@ public class MaterialScrollPaneUI extends BasicScrollPaneUI {
 	}
 	
 	private static boolean isPointWithinComponent(Component c, Point p) {
-	    if (null == c || !c.isVisible()) {
-	    	return false;
-	    }
-	    try {
-	    	Rectangle bounds = c.getBounds();
-	    	bounds.setLocation(c.getLocationOnScreen());
-	    	return bounds.contains(p);
-	    } catch (Throwable t) {
-	    	return false;
-	    }
+	    return ComponentUtil.isPointWithinComponent(c, p);
 	}
 	
 	/**
