@@ -142,7 +142,7 @@ def customizePom(pom) {
             }
             licenses {
                 license {
-                    name 'MIT License'
+                    name 'GPLv2 with Classpath Exception'
                     url 'https://github.com/MrcJkb/material-metal-theme/blob/master/LICENSE.md'
                     distribution 'repo'
                 }
