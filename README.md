@@ -1,5 +1,7 @@
 # Dark and light material design Metal themes for Swing.
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.mrcjkb/material-metal-theme/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.mrcjkb/material-metal-theme)
+
 ## Use
 The theme uses the Builder pattern for defining primary, secondary and accent colors.
 See
