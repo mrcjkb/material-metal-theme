@@ -30,7 +30,9 @@ public class MaterialTableUI extends BasicTableUI {
 			table.setRowHeight(table.getRowHeight() + 4);
 		}
 
-		this.setDefaultCellRenderWithType(table);
+		this.setDefaultCellRenderWithType(table, new MaterialTableCellRenderer());
+		table.setDefaultEditor(Object.class, new MaterialTableCellEditor());
+		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 	}
 
 	@Override
@@ -46,6 +48,7 @@ public class MaterialTableUI extends BasicTableUI {
 
 		table.removeEditor();
 		table.setDefaultRenderer(Object.class, null);
+		table.setDefaultEditor(Object.class, null);
 	}
 
 	@Override
@@ -56,14 +59,14 @@ public class MaterialTableUI extends BasicTableUI {
 	/**
 	 * Sets a MaterialCellRender as default for the respective classes.
 	 */
-	protected void setDefaultCellRenderWithType(JTable table) {
+	protected void setDefaultCellRenderWithType(JTable table, TableCellRenderer renderer) {
 		if (null != table) {
-			table.setDefaultRenderer(Object.class, new MaterialTableCellRenderer());
-			table.setDefaultRenderer(String.class, new MaterialTableCellRenderer());
-			table.setDefaultRenderer(Integer.class, new MaterialTableCellRenderer());
-			table.setDefaultRenderer(Double.class, new MaterialTableCellRenderer());
-			table.setDefaultRenderer(Float.class, new MaterialTableCellRenderer());
-			table.setDefaultRenderer(Boolean.class, new MaterialTableCellRenderer());
+			table.setDefaultRenderer(Object.class, renderer);
+			table.setDefaultRenderer(String.class, renderer);
+			table.setDefaultRenderer(Integer.class, renderer);
+			table.setDefaultRenderer(Double.class, renderer);
+			table.setDefaultRenderer(Float.class, renderer);
+			table.setDefaultRenderer(Boolean.class, renderer);
 		}
 	}
 	
@@ -136,5 +139,39 @@ public class MaterialTableUI extends BasicTableUI {
 	        }
 	        return this;
 	    }
+	}
+
+	private static JTextField initTextField() {
+		return new JTextField();
+	}
+
+	public static class MaterialTableCellEditor extends DefaultCellEditor {
+
+		private static final long serialVersionUID = 1L;
+
+		public MaterialTableCellEditor() {
+			super(initTextField());
+		}
+
+		public MaterialTableCellEditor(JComboBox<?> comboBox) {
+			super(comboBox);
+		}
+
+		public MaterialTableCellEditor(JCheckBox checkBox) {
+			super(checkBox);
+		}
+
+		public MaterialTableCellEditor(JTextField textField) {
+			super(textField);
+		}
+
+		@Override
+		public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+			Component component = super.getTableCellEditorComponent(table, value, isSelected, row, column);
+			Color background = UIManager.getColor("Table.background");
+			component.setBackground(background);
+			return component;
+		}
+
 	}
 }
