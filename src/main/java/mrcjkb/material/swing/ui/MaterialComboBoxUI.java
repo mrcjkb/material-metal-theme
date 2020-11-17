@@ -12,15 +12,21 @@ import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import java.awt.*;
 import java.awt.event.FocusListener;
+import java.awt.geom.RectangularShape;
+import java.awt.geom.RoundRectangle2D;
 
 public class MaterialComboBoxUI extends BasicComboBoxUI {
+
+	private static final int MIN_WIDTH = 49;
+	private static final int MIN_HEIGHT = 24;
+	private static final int BUTTON_WIDTH = 23;
+
+	protected Color background;
+	protected int arc = 2; //default value
 
 	public static ComponentUI createUI(JComponent c) {
 		return new MaterialComboBoxUI();
 	}
-
-	protected Color background;
-	protected int arc = 2; //default value
 
 	@Override
 	public void installUI(JComponent c) {
@@ -58,18 +64,95 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 	@Override
 	protected JButton createArrowButton() {
 		JButton button;
-		button = new JButton();
+		button = new JButton() {
+			@Override
+			public Dimension getPreferredSize() {
+				return getArrowButtonPreferredSize(comboBox);
+			}
+		};
 		button.setUI(new MaterialComboBoxButtonUI());
 		return button;
 	}
 
 	@Override
-	public void update(Graphics g, JComponent c) {
+	public void paint(Graphics g, JComponent c) {
+		Container parent = c.getParent();
 		g = MaterialDrawingUtils.getAliasedGraphics(g);
-		g.setColor(c.getBackground());
-		g.fillRoundRect(0, 0, comboBox.getWidth(), comboBox.getHeight(), arc, arc);
-		paint(g, c);
+		if (parent != null) {
+			g.setColor(c.getBackground());
+			g.fillRect(0, 0, c.getWidth(), c.getHeight());
+		}
+
+		Graphics2D g2 = (Graphics2D) g.create();
+		Rectangle r = new Rectangle(c.getSize());
+
+		try {
+			g2.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_NORMALIZE);
+			g2.translate(r.x, r.y);
+
+			g2.setColor(c.getBackground());
+			g2.fill(getOuterShape(r, arc));
+		}
+		finally {
+			g2.dispose();
+		}
+		if (!comboBox.isEditable()) {
+			checkFocus();
+			paintCurrentValue(g, rectangleForCurrentValue(), hasFocus);
+		}
+		currentValuePane.removeAll();
 	}
+
+	protected void checkFocus() {
+		hasFocus = false;
+		if (!comboBox.isEnabled()) {
+			hasFocus = false;
+			return;
+		}
+		hasFocus = hasFocus(comboBox);
+		if (hasFocus) {
+			return;
+		}
+		ComboBoxEditor ed = comboBox.getEditor();
+		if (ed != null) {
+			hasFocus = hasFocus(ed.getEditorComponent());
+		}
+	}
+
+	@Override
+	public Dimension getPreferredSize(JComponent c) {
+		return getSizeWithButton(super.getMinimumSize(c), editor != null ? editor.getPreferredSize() : null);
+	}
+
+
+	@Override
+	public Dimension getMinimumSize(JComponent c) {
+		Dimension minSize = super.getMinimumSize(c);
+		Insets i = c.getInsets();
+		minSize.width = MIN_WIDTH + BUTTON_WIDTH + i.left + i.right;
+		return getSizeWithButton(minSize, editor != null ? editor.getMinimumSize() : null);
+	}
+
+	protected Dimension getSizeWithButton(Dimension size, Dimension editorSize) {
+		Insets i = getInsets();
+		Dimension abSize = getArrowButtonPreferredSize(comboBox);
+
+		int paddingLeft = null == padding ? 0 : padding.left;
+		int paddingRight = null == padding ? 0 : padding.right;
+		int editorHeight = editorSize != null ? editorSize.height + i.top + i.bottom : 0;
+		int editorWidth = editorSize != null ? editorSize.width + i.left + paddingLeft + paddingRight : 0;
+		editorWidth = Math.max(editorWidth, MIN_WIDTH + i.left);
+
+		int width = size != null ? size.width : 0;
+		int height = size != null ? size.height : 0;
+
+		width = Math.max(editorWidth + abSize.width, width + paddingLeft);
+		height = Math.max(Math.max(editorHeight, Math.max(abSize.height, height)),
+				MIN_HEIGHT + i.top + i.bottom);
+
+		return new Dimension(width, height);
+	}
+
 
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	@Override
@@ -86,6 +169,21 @@ public class MaterialComboBoxUI extends BasicComboBoxUI {
 	protected FocusListener createFocusListener() {
 		comboBox.addFocusListener(focusListener);
 		return super.createFocusListener();
+	}
+
+	private RectangularShape getOuterShape(Rectangle r, float arc) {
+		return new RoundRectangle2D.Float(0F, 0F, r.width - 0F * 2, r.height - 0F * 2, arc, arc);
+	}
+
+	private static boolean hasFocus(Component c) {
+		Component owner = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+		return owner != null && SwingUtilities.isDescendingFrom(owner, c);
+	}
+
+	private static Dimension getArrowButtonPreferredSize(JComboBox<?> comboBox) {
+		Insets i = comboBox != null ? comboBox.getInsets() : new Insets(3, 3, 3, 3);
+		int height = MIN_HEIGHT + i.top + i.bottom;
+		return new Dimension(BUTTON_WIDTH + i.left, height);
 	}
 
 	public static class MaterialComboBoxRenderer extends BasicComboBoxRenderer {
