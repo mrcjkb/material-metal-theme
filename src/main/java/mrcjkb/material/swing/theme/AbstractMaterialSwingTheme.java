@@ -224,6 +224,8 @@ public abstract class AbstractMaterialSwingTheme extends DefaultMetalTheme {
 
 		UIManager.put("ToolBarUI", MaterialToolBarUI.class.getName());
 
+		UIManager.put("SplitPaneUI", MaterialSplitPaneUI.class.getName());
+
 		if (applyIconSet) {
 			UIManager.put("FileView.directoryIcon", new FolderClosedIcon());
 			UIManager.put("Tree.openIcon", new FolderOpenIcon());
