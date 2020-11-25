@@ -127,6 +127,7 @@ public class DarkMaterialSwingTheme extends AbstractMaterialSwingTheme {
 		UIManager.put("PopupMenu.foreground", PANEL_FOREGROUND);
 		UIManager.put("Separator.border", new ColorUIResource(new Color(0, 0, 0, 0)));
 		UIManager.put("ComboBox.foreground", PANEL_FOREGROUND);
+		UIManager.put("SpinnerButton.foreground", PANEL_FOREGROUND);
 		UIManager.put("Tree.background", getSecondary3());
 		UIManager.put("Tree.foreground", PANEL_FOREGROUND);
 		UIManager.put("Tree.rendererBackgroundNonSelectionColor", getPrimary2());

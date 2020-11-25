@@ -77,6 +77,7 @@ public class LightMaterialSwingTheme extends AbstractMaterialSwingTheme {
 		UIManager.put("Tree.selectionHighlight", Color.LIGHT_GRAY );
 		UIManager.put("Tree.selectionBackground", getAccent1());
 		UIManager.put("Tree.selectionBackgroundAlpha", 255);
+		UIManager.put("SpinnerButton.foreground", UIManager.getColor("ComboBox.foreground"));
 		setInactiveColors(INACTIVE_COLOR);
 	}
 
