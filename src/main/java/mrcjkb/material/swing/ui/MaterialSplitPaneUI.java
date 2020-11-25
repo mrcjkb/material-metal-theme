@@ -10,7 +10,6 @@ public class MaterialSplitPaneUI extends BasicSplitPaneUI {
 
     public static ComponentUI createUI(JComponent c) {
         JSplitPane splitPane = (JSplitPane) c;
-        splitPane.setDividerSize((int) (splitPane.getDividerSize() * 1.5));
         splitPane.setBorder(null);
         return new MaterialSplitPaneUI();
     }
