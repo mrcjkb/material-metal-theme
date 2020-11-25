@@ -58,6 +58,8 @@ public class MaterialTableUI extends BasicTableUI {
 
 	/**
 	 * Sets a MaterialCellRender as default for the respective classes.
+	 * @param table the table to add the renderer to
+	 * @param renderer the renderer to add
 	 */
 	protected void setDefaultCellRenderWithType(JTable table, TableCellRenderer renderer) {
 		if (null != table) {

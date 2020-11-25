@@ -36,6 +36,8 @@ public class DownArrowIcon implements Icon {
 
     /**
      * Creates a new transcoded SVG image.
+     * @param width the width
+     * @param height the height
      */
     public DownArrowIcon(int width, int height) {
         this.width = width;

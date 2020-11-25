@@ -30,6 +30,9 @@ public class FolderClosedIcon implements Icon {
 
     /**
      * Creates a new transcoded SVG image.
+     * @param width the width
+     * @param height the height
+     * @param foreground the foreground color
      */
     public FolderClosedIcon(int width, int height, Color foreground) {
         this.width = width;

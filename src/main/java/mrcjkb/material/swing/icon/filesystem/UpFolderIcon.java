@@ -33,6 +33,10 @@ public class UpFolderIcon implements Icon {
 
     /**
      * Creates a new transcoded SVG image.
+     * @param width the width
+     * @param height the height
+     * @param foreground the foreground color
+     * @param accent the accent color
      */
     public UpFolderIcon(int width, int height, Color foreground, Color accent) {
         this.width = width;

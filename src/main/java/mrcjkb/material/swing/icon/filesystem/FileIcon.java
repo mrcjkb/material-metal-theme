@@ -30,6 +30,8 @@ public class FileIcon implements Icon {
 
     /**
      * Creates a new transcoded SVG image.
+     * @param width the width
+     * @param height the height
      */
     public FileIcon(int width, int height, Color foreground) {
         this.width = width;
