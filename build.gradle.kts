@@ -28,7 +28,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation("junit:junit:4.13.1")
+    testImplementation("com.tngtech.archunit:archunit-junit5:0.14.1")
 }
 
 java {
@@ -38,6 +38,10 @@ java {
     }
     withJavadocJar()
     withSourcesJar()
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
 
 tasks.jar {
