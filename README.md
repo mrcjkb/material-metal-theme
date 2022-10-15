@@ -2,6 +2,14 @@
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.mrcjkb/material-metal-theme/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.mrcjkb/material-metal-theme)
 
+> [![Maintenance](https://img.shields.io/badge/Maintained%3F-no-red.svg)](https://bitbucket.org/lbesson/ansi-colors)
+> 
+> __NOTE:__
+>
+> Since I hardly work with Java anymore, I will no longer actively maintain this repository.
+> I will gladly review any PRs.
+
+
 ## Use
 The theme uses the Builder pattern for defining primary, secondary and accent colors.
 See
